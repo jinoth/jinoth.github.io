@@ -1,0 +1,13 @@
+# Basic site settings
+title: Jinoth Kumar - Portfolio
+description: Data Analyst & IT Engineer Portfolio
+baseurl: ""
+url: "https://jinoth.github.io"
+
+# Build settings
+markdown: kramdown
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor 
