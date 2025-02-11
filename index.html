@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jinoth Kumar - Portfolio</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <div class="loading-screen">
+    <div class="loader"></div>
+  </div>
+
+  <header class="header">
+    <nav class="navbar">
+      <div class="nav-content">
+        <div class="nav-left">
+          <a href="#" class="nav-brand">
+            <span class="name-text">Jinoth Kumar</span>
+          </a>
+        </div>
+        
+        <div class="nav-right">
+          <div class="nav-links">
+            <a href="#about" class="nav-link" data-translate="nav-about">About</a>
+            <a href="#experience" class="nav-link" data-translate="nav-experience">Experience</a>
+            <a href="#skills" class="nav-link" data-translate="nav-skills">Skills</a>
+            <a href="#education" class="nav-link" data-translate="nav-education">Education</a>
+          </div>
+          
+          <div class="language-selector">
+            <button class="lang-btn" onclick="changeLanguage('en')">EN</button>
+            <span class="lang-separator">|</span>
+            <button class="lang-btn" onclick="changeLanguage('ja')">日本語</button>
+          </div>
+        </div>
+
+        <button class="nav-toggle" aria-label="toggle navigation">
+          <span class="hamburger"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <section id="hero" class="hero-section">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">Jinoth Kumar</h1>
+        <p class="hero-subtitle">Data Analyst & IT Engineer</p>
+        <p class="hero-description">
+          Specializing in data analytics, business intelligence, and cloud solutions. 
+          Bridging technology and business needs with innovative solutions.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="primary-btn">Get in Touch</a>
+          <a href="path/to/resume.pdf" class="secondary-btn">Download CV</a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <a href="#about" class="scroll-down">
+        <span>Scroll Down</span>
+        <i class="fas fa-chevron-down"></i>
+      </a>
+    </div>
+  </section>
+
+  <section id="about" class="section-padding">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up" data-translate="about-title">About Me</h2>
+      <div class="about-content">
+        <div class="about-text" data-aos="fade-right">
+          <p class="about-description" data-translate="about-description">
+            A passionate Data Analyst and IT Engineer with expertise in business intelligence
+            and cloud solutions. Based in Tokyo, Japan, I specialize in transforming complex
+            data into actionable insights and developing innovative technical solutions.
+          </p>
+          <div class="key-points">
+            <div class="key-point" data-aos="fade-up" data-aos-delay="100">
+              <i class="fas fa-chart-line"></i>
+              <h3 data-translate="data-analytics">Data Analytics</h3>
+              <p data-translate="data-analytics-desc">Advanced analytics and visualization</p>
+            </div>
+            <div class="key-point" data-aos="fade-up" data-aos-delay="200">
+              <i class="fas fa-cloud"></i>
+              <h3 data-translate="cloud-solutions">Cloud Solutions</h3>
+              <p data-translate="cloud-solutions-desc">AWS and Azure expertise</p>
+            </div>
+            <div class="key-point" data-aos="fade-up" data-aos-delay="300">
+              <i class="fas fa-code"></i>
+              <h3 data-translate="development">Development</h3>
+              <p data-translate="development-desc">Full-stack development capabilities</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="summary" data-aos="fade-up">
+      <h2>Summary</h2>
+      <div class="card">
+        <p>Hi, I'm Jinoth! A data analyst on the path to becoming a data scientist, passionate about transforming data into actionable insights and business impact.</p>
+      </div>
+    </section>
+
+    <section id="skills" class="section-padding">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up" data-translate="skills-title">Skills & Expertise</h2>
+        
+        <div class="skills-grid">
+          <!-- Data Analytics -->
+          <div class="skill-category" data-aos="fade-up">
+            <div class="skill-header">
+              <i class="fas fa-chart-bar"></i>
+              <h3>Data Analytics & BI</h3>
+            </div>
+            <div class="skill-content">
+              <div class="skill-item">
+                <span class="skill-name">Data Visualization</span>
+                <div class="skill-details">Tableau, Power BI</div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Data Processing</span>
+                <div class="skill-details">ETL, Tableau Prep, Apache Spark</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cloud & Infrastructure -->
+          <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+            <div class="skill-header">
+              <i class="fas fa-cloud"></i>
+              <h3>Cloud & Infrastructure</h3>
+            </div>
+            <div class="skill-content">
+              <div class="skill-item">
+                <span class="skill-name">AWS</span>
+                <div class="skill-details">EC2, S3, EMR</div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Azure</span>
+                <div class="skill-details">DevOps, Synapse, Power Platform</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Programming & Development -->
+          <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+            <div class="skill-header">
+              <i class="fas fa-code"></i>
+              <h3>Programming & Development</h3>
+            </div>
+            <div class="skill-content">
+              <div class="skill-item">
+                <span class="skill-name">Languages:</span>
+                <div class="skill-details">Python, SQL, VBA for automation and data analysis</div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Frameworks:</span>
+                <div class="skill-details">Flask, Kedro, Apache Airflow for pipeline development</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI & Machine Learning -->
+          <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+            <div class="skill-header">
+              <i class="fas fa-brain"></i>
+              <h3>AI & Machine Learning</h3>
+            </div>
+            <div class="skill-content">
+              <div class="skill-item">
+                <span class="skill-name">ML Development:</span>
+                <div class="skill-details">TensorFlow, Pandas, NumPy for predictive modeling</div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Specialized Areas:</span>
+                <div class="skill-details">Predictive Analytics, Risk Assessment, Pattern Recognition</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section-padding">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up" data-translate="experience-title">Professional Experience</h2>
+        
+        <div class="experience-container">
+            <!-- Main Company -->
+            <div class="main-company" data-aos="fade-up">
+                <div class="company-header">
+                    <h3>Human Resocia Co., Ltd.</h3>
+                    <span class="duration">April 2022 - Present</span>
+                    <span class="location">Tokyo, Japan</span>
+                </div>
+                <div class="position">IT Engineer</div>
+                
+                <!-- Project Timeline -->
+                <div class="project-timeline">
+                    <!-- KDDI Project (Most Recent) -->
+                    <div class="project-item" data-aos="fade-up">
+                        <div class="project-header">
+                            <h4>Data Analyst - KDDI Corporation</h4>
+                            <span class="project-duration">April 2024 - Present</span>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-subsection">
+                                <h5>AU Wellness (Healthcare Services):</h5>
+                                <ul>
+                                    <li>Designed and implemented healthcare analytics dashboards using Tableau</li>
+                                    <li>Engineered intermediate data layers with Tableau Prep</li>
+                                    <li>Led DOOH campaign analytics through visualization techniques</li>
+                                    <li>Orchestrated automated data processing workflows using AWS</li>
+                                </ul>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-label">Technologies:</span>
+                                <span class="tech-items">AWS (EC2, S3) | Jupyter Notebook | PySpark | SQL | Python | Tableau | Apache Spark</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hitachi AI Project -->
+                    <div class="project-item" data-aos="fade-up">
+                        <div class="project-header">
+                            <h4>AI Engineer - Hitachi Solutions</h4>
+                            <span class="project-duration">December 2023 - March 2024</span>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-subsection">
+                                <h5>AI Wildfire Prediction Model:</h5>
+                                <ul>
+                                    <li>Developed predictive modeling pipelines using TensorFlow and scikit-learn for wildfire risk assessment</li>
+                                    <li>Implemented data preprocessing workflows handling satellite imagery and weather data using NumPy and Pandas</li>
+                                    <li>Optimized model performance achieving 85% prediction accuracy through feature engineering and hyperparameter tuning</li>
+                                    <li>Designed real-time data processing pipeline integrating multiple data sources (weather APIs, satellite data)</li>
+                                    <li>Created automated model retraining workflows using Apache Airflow for continuous model improvement</li>
+                                </ul>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-label">Technologies:</span>
+                                <span class="tech-items">Python | TensorFlow | scikit-learn | NumPy | Pandas | Apache Airflow | AWS S3 | Docker</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TDC SOFT Project -->
+                    <div class="project-item" data-aos="fade-up">
+                        <div class="project-header">
+                            <h4>BI Operations and Automation Engineer - TDC SOFT Inc</h4>
+                            <span class="project-duration">July 2023 - November 2023</span>
+                            <span class="project-location">Tokyo, Japan</span>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-subsection">
+                                <h5>BI Dashboard Automation for Courier Service:</h5>
+                                <ul>
+                                    <li>Spearheaded BI dashboard automation for a leading Japanese courier service, revolutionizing operational efficiency</li>
+                                    <li>Architected integrated data pipelines using Azure DevOps and LogicApps for enhanced data reliability</li>
+                                    <li>Developed comprehensive automation solutions using Python and VBA for streamlined daily operations</li>
+                                    <li>Created and maintained extensive technical documentation ensuring knowledge transfer and system sustainability</li>
+                                    <li>Implemented automated reporting systems reducing manual processing time by 70%</li>
+                                    <li>Designed ETL processes for real-time data integration from multiple sources</li>
+                                </ul>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-label">Technologies:</span>
+                                <span class="tech-items">Python | Azure DevOps | SSMS | LogicApps | Power BI | Tableau | VBA</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hitachi Solutions Project -->
+                    <div class="project-item" data-aos="fade-up">
+                        <div class="project-header">
+                            <h4>Azure and Power BI Developer - Hitachi Solutions</h4>
+                            <span class="project-duration">May 2022 - March 2023</span>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-subsection">
+                                <h5>Manufacturing Analytics Platform:</h5>
+                                <ul>
+                                    <li>Engineered comprehensive Power BI solutions for manufacturing analytics</li>
+                                    <li>Designed and maintained Azure Synapse pipelines and views</li>
+                                    <li>Pioneered R&D initiatives for Power Platform integration</li>
+                                    <li>Developed Azure SQL Database solutions for data warehousing</li>
+                                    <li>Implemented real-time monitoring dashboards for production metrics</li>
+                                    <li>Created automated data refresh mechanisms improving reporting efficiency</li>
+                                </ul>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-label">Technologies:</span>
+                                <span class="tech-items">Azure | Power BI | Azure Synapse | Power Platform | SharePoint | Azure SQL Database</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="projects" data-aos="fade-up">
+      <h2>Projects</h2>
+      <p>Here are a few projects I've worked on:</p>
+      <ul>
+        <li>
+          <strong>AI Wildfire Prediction Model</strong> - Developed predictive modeling pipelines for an AI wildfire prediction model, optimizing machine learning models and data processing pipelines.
+        </li>
+        <li>
+          <strong>BI Operations and Automation</strong> - Automated operations for a BI dashboard, managed data pipelines, and utilized Azure DevOps for efficient deployment.
+        </li>
+        <li>
+          <strong>Power BI Dashboards for Manufacturing Clients</strong> - Developed data analysis solutions for manufacturing clients, creating Power BI dashboards and managing Azure Synapse views and pipelines.
+        </li>
+      </ul>
+    </section>
+
+    <section id="education" class="section-padding">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up" data-translate="education-title">Education & Certifications</h2>
+        
+        <!-- Education -->
+        <div class="education-container">
+          <div class="education-item" data-aos="fade-up">
+            <div class="education-header">
+              <h3 class="education-title">Bachelor of Engineering in Computer Science</h3>
+              <span class="education-duration">2018 - 2022</span>
+            </div>
+            <div class="education-body">
+              <div class="education-school">Sri Sairam Engineering College, Anna University</div>
+              <ul class="education-details">
+                <li>CGPA: 8.45/10</li>
+                <li>Member of Computer Society of India (CSI)</li>
+                <li>Active participant in technical symposiums and workshops</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Certifications -->
+        <h3 class="subsection-title" data-aos="fade-up" data-translate="certifications-title">Professional Certifications</h3>
+        <div class="certifications-grid">
+            <!-- JLPT N2 -->
+            <div class="certification-item" data-aos="fade-up">
+                <div class="certification-icon">
+                    <i class="fas fa-language"></i>
+                </div>
+                <div class="certification-content">
+                    <h4>JLPT N2 (Japanese Language Proficiency Test)</h4>
+                    <div class="certification-highlight">Achieved 100% score in Listening section</div>
+                    <div class="certification-issuer">Japan Foundation and Japan Educational Exchanges and Services</div>
+                    <div class="certification-date">2023</div>
+                </div>
+            </div>
+
+            <!-- JLPT N3 -->
+            <div class="certification-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="certification-icon">
+                    <i class="fas fa-language"></i>
+                </div>
+                <div class="certification-content">
+                    <h4>JLPT N3</h4>
+                    <div class="certification-issuer">Japan Foundation and Japan Educational Exchanges and Services</div>
+                    <div class="certification-date">2023</div>
+                </div>
+            </div>
+
+            <!-- AWS -->
+            <div class="certification-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="certification-icon">
+                    <i class="fab fa-aws"></i>
+                </div>
+                <div class="certification-content">
+                    <h4>AWS Certified Cloud Practitioner</h4>
+                    <div class="certification-issuer">Amazon Web Services</div>
+                    <div class="certification-date">2023</div>
+                </div>
+            </div>
+
+            <!-- Tableau -->
+            <div class="certification-item" data-aos="fade-up">
+                <div class="certification-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="certification-content">
+                    <h4>Tableau Certification</h4>
+                    <div class="certification-issuer">Tableau</div>
+                    <div class="certification-date">2023</div>
+                </div>
+            </div>
+
+            <!-- Database -->
+            <div class="certification-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="certification-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <div class="certification-content">
+                    <h4>Data Warehouse Concepts</h4>
+                    <div class="certification-issuer">Professional Certification</div>
+                    <div class="certification-date">2023</div>
+                </div>
+            </div>
+
+            <!-- Python ML -->
+            <div class="certification-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="certification-icon">
+                    <i class="fab fa-python"></i>
+                </div>
+                <div class="certification-content">
+                    <h4>Python for Machine Learning</h4>
+                    <div class="certification-issuer">Professional Certification</div>
+                    <div class="certification-date">2023</div>
+                </div>
+            </div>
+
+            <!-- NAT-TEST -->
+            <div class="certification-item" data-aos="fade-up">
+                <div class="certification-icon">
+                    <i class="fas fa-language"></i>
+                </div>
+                <div class="certification-content">
+                    <h4>NAT-TEST 4Q (JLPT N4 equivalent)</h4>
+                    <div class="certification-issuer">NAT-TEST</div>
+                    <div class="certification-date">2022</div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" data-aos="fade-up">
+      <h2>Contact</h2>
+      <div class="contact-container">
+        <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">
+            <span class="btn-text">Send Message</span>
+            <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+          </button>
+        </form>
+        <div id="formStatus"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="social-links">
+        <a href="mailto:your.email@example.com" class="social-link">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://linkedin.com/in/yourprofile" class="social-link">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/yourusername" class="social-link">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <p>&copy; 2024 Jinothkumar Sundarrajan</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <div class="overlay" id="overlay"></div>
+  <div class="popup" id="messagePopup">
+    <div class="popup-content">
+      <i class="fas fa-check-circle" style="color: #28a745; font-size: 48px;"></i>
+      <h3>Success!</h3>
+      <p>Your message has been sent successfully.</p>
+    </div>
+    <button class="popup-close" onclick="closePopup()">Close</button>
+  </div>
+</body>
+</html>
