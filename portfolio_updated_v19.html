@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jinoth Kumar - Data Scientist Portfolio</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {}
+            }
+        }
+    </script>
+    <style>
+        body { margin: 0; padding: 0; }
+        html {
+            scroll-behavior: smooth;
+        }
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState } = React;
+        
+        // Lucide icons as inline SVG components
+        const Briefcase = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+        );
+        
+        const Code = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+        );
+        
+        const Database = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+        );
+        
+        const Brain = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"></path><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"></path></svg>
+        );
+        
+        const Cloud = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg>
+        );
+        
+        const BarChart3 = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
+        );
+
+        const Layers = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        );
+        
+        const ChevronRight = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        );
+        
+        const Award = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+        );
+        
+        const MapPin = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        );
+        
+        const Languages = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>
+        );
+        
+        const GraduationCap = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+        );
+        
+        const Mail = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+        );
+        
+        const Linkedin = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        );
+        
+        const Github = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+        );
+
+        const Copy = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        );
+
+        const Check = ({size = 24, className = ""}) => (
+            <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        );
+
+        function Portfolio() {
+          const [activeTab, setActiveTab] = useState('overview');
+          const [language, setLanguage] = useState('en'); // 'en' or 'ja'
+          const [contactForm, setContactForm] = useState({
+            name: '',
+            company: '',
+            website: '',
+            requirement: '',
+            offer: ''
+          });
+          const [generatedEmail, setGeneratedEmail] = useState('');
+          const [copied, setCopied] = useState(false);
+
+          const handleInputChange = (field, value) => {
+            setContactForm(prev => ({
+              ...prev,
+              [field]: value
+            }));
+          };
+
+          const generateEmail = () => {
+            const { name, company, website, requirement, offer } = contactForm;
+            
+            const emailMessages = {
+              en: {
+                alert: 'Please fill in at least Name and Company Name',
+                subject: `Inquiry from ${company} - ${name}`,
+                greeting: 'Dear Jinoth Kumar,',
+                hope: 'I hope this message finds you well.',
+                intro: `My name is ${name}${company ? `, and I represent ${company}` : ''}.`,
+                website: 'Company Website:',
+                offering: 'We are offering:',
+                requirements: 'Project/Position Requirements:',
+                closing: 'I would like to discuss potential collaboration opportunities with you.',
+                regards: 'Best regards,'
+              },
+              ja: {
+                alert: '少なくとも氏名と会社名を入力してください',
+                subject: `${company} - ${name}からのお問い合わせ`,
+                greeting: 'ジノトゥクマル様',
+                hope: 'いつもお世話になっております。',
+                intro: `${name}と申します${company ? `、${company}を代表しております` : ''}。`,
+                website: '会社ウェブサイト:',
+                offering: '提示内容:',
+                requirements: 'プロジェクト・ポジション要件:',
+                closing: 'ぜひ協力の機会についてお話しさせていただければと思います。',
+                regards: 'よろしくお願いいたします。'
+              }
+            };
+
+            const msg = emailMessages[language];
+            
+            if (!name || !company) {
+              alert(msg.alert);
+              return;
+            }
+
+            const now = new Date();
+            const timestamp = now.getTime();
+            const localTime = now.toLocaleString(language === 'ja' ? 'ja-JP' : 'en-US', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+              hour12: false
+            });
+            
+            const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            const timeZoneName = timeZone.split('/').pop() || timeZone;
+            
+            let locationName = timeZoneName;
+            try {
+              const timezoneMap = {
+                'Asia/Tokyo': language === 'ja' ? '東京、日本' : 'Tokyo, Japan',
+                'America/New_York': 'New York, USA',
+                'America/Los_Angeles': 'Los Angeles, USA',
+                'Europe/London': 'London, UK',
+                'Europe/Paris': 'Paris, France',
+                'Asia/Shanghai': 'Shanghai, China',
+                'Asia/Singapore': 'Singapore',
+                'Australia/Sydney': 'Sydney, Australia',
+                'America/Toronto': 'Toronto, Canada',
+                'America/Chicago': 'Chicago, USA'
+              };
+              locationName = timezoneMap[timeZone] || timeZoneName;
+            } catch (e) {
+              locationName = timeZoneName;
+            }
+
+            const dateStr = now.toISOString().slice(0, 10).replace(/-/g, '');
+            const timeStr = now.toTimeString().slice(0, 8).replace(/:/g, '');
+            const enquiryNumber = `ENQ-${dateStr}-${timeStr}-${timeZoneName.replace(/[^A-Z0-9]/gi, '').substring(0, 6).toUpperCase()}`;
+
+            let emailContent = `To: jinoth2112@gmail.com\n`;
+            emailContent += `Subject: ${msg.subject} [${enquiryNumber}]\n\n`;
+            emailContent += `${msg.greeting}\n\n`;
+            emailContent += `${msg.hope}\n\n`;
+            emailContent += `${msg.intro}\n`;
+            
+            if (website) {
+              emailContent += `${msg.website} ${website}\n`;
+            }
+            
+            if (offer) {
+              emailContent += `\n${msg.offering} ${offer}\n`;
+            }
+            
+            if (requirement) {
+              emailContent += `\n${msg.requirements}\n${requirement}\n`;
+            }
+            
+            emailContent += `\n${msg.closing}\n\n`;
+            emailContent += `${msg.regards}\n${name}`;
+            if (company) {
+              emailContent += `\n${company}`;
+            }
+
+            setGeneratedEmail(emailContent);
+            setCopied(false);
+          };
+
+          const copyToClipboard = () => {
+            if (generatedEmail) {
+              navigator.clipboard.writeText(generatedEmail).then(() => {
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+              }).catch(err => {
+                alert('Failed to copy text. Please select and copy manually.');
+              });
+            }
+          };
+
+          const personalInfo = {
+            location: "Tokyo, Japan",
+            languages: ["Japanese (Native)", "English (Business Level)"]
+          };
+
+          const content = {
+            en: {
+              name: 'Jinoth Kumar',
+              nav: ['overview', 'skills', 'projects', 'contact'],
+              hero: {
+                title: 'Data-Driven Solutions for',
+                titleGradient: ' Business Growth',
+                description: 'Data Scientist with 4+ years of professional experience specializing in big data engineering and location analytics. Expert in PySpark, AWS EMR, Databricks, and distributed computing for processing terabytes of GPS data. Currently at KDDI Corporation developing segmentation algorithms and targeting logic for location-based intelligence across multiple enterprise clients including retail, transportation, and manufacturing sectors.',
+                location: 'Tokyo, Japan',
+                japanese: 'Japanese: JLPT N2 (Listening: 100%) | Pursuing N1',
+                english: 'English: Professional Working Proficiency',
+                viewProjects: 'View Projects',
+                contactMe: 'Contact Me',
+                highlights: [
+                  'Large-scale Data Engineering with Databricks, AWS EMR, and PySpark',
+                  'Python-based AI/ML Pipeline Development: Data Extraction, Preprocessing, Feature Engineering, and Visualization',
+                  'Pipeline Construction, Data Modeling, and View Creation using Azure Synapse',
+                  'Intuitive Dashboard Development with Power BI and Tableau',
+                  'High-Speed Analysis of Terabyte-Scale GPS Data using Spark Processing',
+                  'Data Warehouse Concepts (ETL/ELT, Star Schema, Scalable Data Design)',
+                  'Rapid Learning and Practical Application of New Cloud Technologies and Tools'
+                ]
+              },
+              skills: {
+                title: 'Technical',
+                titleHighlight: 'Expertise',
+                programmingLanguages: 'Programming Languages',
+                databases: 'Databases',
+                bigData: 'Big Data & Distributed Computing',
+                biTools: 'BI & Analytics',
+                microsoftAzure: 'Microsoft Azure',
+                amazonAWS: 'Amazon AWS',
+                pythonLibraries: 'Python Libraries & Frameworks',
+                devTools: 'Development Tools',
+                os: 'Operating Systems',
+                collaboration: 'Collaboration Tools',
+                communication: 'Communication:',
+                projectMgmt: 'Project Management:',
+                fileSharing: 'File Sharing:'
+              },
+              projects: {
+                title: 'Featured',
+                titleHighlight: 'Projects',
+                professional: 'Professional Experience',
+                university: 'University Projects',
+                keyResp: 'Key Responsibilities:',
+                techUsed: 'Technologies Used:',
+                references: 'References:',
+                team: 'Team:'
+              },
+              certifications: {
+                title: 'Certifications &',
+                titleHighlight: 'Continuous Learning',
+                professional: 'Professional Certifications',
+                courses: 'Online Course Completions'
+              },
+              contact: {
+                title: "Let's Work Together",
+                description: 'Available for data science consulting, Azure cloud solutions, and BI development projects.',
+                emailMe: 'Email Me',
+                generateEmail: 'Generate Email Content',
+                formDescription: 'Fill in your information below to generate a professional email template.',
+                name: 'Name',
+                company: 'Company Name',
+                website: 'Website Link',
+                offer: 'Offer/Salary Range',
+                requirement: 'Project/Position Requirements (Optional)',
+                requirementPlaceholder: 'Describe the project requirements, position details, or any specific needs...',
+                generate: 'Generate Email Content',
+                generatedEmail: 'Generated Email Content:',
+                copy: 'Copy',
+                copied: 'Copied!',
+                copyInstructions: 'Click "Copy" button above to copy the email content, then paste it into your email.',
+                required: '*'
+              },
+              footer: {
+                name: 'Jinoth Kumar',
+                title: 'Data Scientist & Analytics Engineer',
+                location: 'Tokyo, Japan',
+                rights: '© 2025 All rights reserved.'
+              }
+            },
+            ja: {
+              name: 'ジノトゥクマル',
+              nav: ['概要', 'スキル', 'プロジェクト', '連絡先'],
+              hero: {
+                title: 'データドリブンで実現する',
+                titleGradient: 'ビジネス成長',
+                description: 'データサイエンティスト／ビッグデータエンジニアとして4年以上の経験があり、PySpark・Databricks・AWS EMR を活用した大規模データ処理や分散処理を得意としています。GPS・位置情報データの解析や、高速で安定したデータパイプラインの構築を中心に、流通・交通・製造業向けの分析基盤やアルゴリズム開発に携わっています。',
+                location: '東京、日本',
+                japanese: '日本語: JLPT N2（聴解満点）| N1勉強中',
+                english: '英語: ビジネスレベル',
+                viewProjects: 'プロジェクトを見る',
+                contactMe: 'お問い合わせ',
+                highlights: [
+                  'Databricks・AWS EMR・PySpark による大規模データエンジニアリング',
+                  'PythonによるAI/MLパイプライン構築、データ抽出・前処理・特徴量設計・可視化',
+                  'Azure Synapse を用いたパイプライン構築、データモデリング、ビュー作成',
+                  'Power BI・Tableau による分かりやすいダッシュボード構築',
+                  'Spark処理 を活用したテラバイト級GPSデータの高速分析',
+                  'データウェアハウスコンセプト（ETL/ELT、スタースキーマ、スケーラブルなデータ設計）',
+                  '新しいクラウド技術やツールの素早いキャッチアップと実践力'
+                ]
+              },
+              skills: {
+                title: '技術',
+                titleHighlight: 'スキル',
+                programmingLanguages: 'プログラミング言語',
+                databases: 'データベース',
+                bigData: 'ビッグデータ・分散処理',
+                biTools: 'BIツール・分析',
+                microsoftAzure: 'Microsoft Azure',
+                amazonAWS: 'Amazon AWS',
+                pythonLibraries: 'Pythonライブラリ・フレームワーク',
+                devTools: '開発ツール',
+                os: 'OS',
+                collaboration: 'コラボレーションツール',
+                communication: 'コミュニケーション:',
+                projectMgmt: 'プロジェクト管理:',
+                fileSharing: 'ファイル共有:'
+              },
+              projects: {
+                title: '主要',
+                titleHighlight: 'プロジェクト',
+                professional: '実務経験',
+                university: '大学プロジェクト',
+                keyResp: '主な業務内容:',
+                techUsed: '使用技術:',
+                references: '参考資料:',
+                team: 'チーム:'
+              },
+              certifications: {
+                title: '資格 &',
+                titleHighlight: '継続学習',
+                professional: 'プロフェッショナル資格',
+                courses: 'オンラインコース修了'
+              },
+              contact: {
+                title: '一緒に働きましょう',
+                description: 'データサイエンスコンサルティング、Azureクラウドソリューション、BI開発プロジェクトをお受けしています。',
+                emailMe: 'メールする',
+                generateEmail: 'メール内容を生成',
+                formDescription: '以下の情報を入力して、連絡用のメール内容を生成してください。',
+                name: '氏名',
+                company: '会社名',
+                website: 'ウェブサイトリンク',
+                offer: '提示内容・年収レンジ',
+                requirement: 'プロジェクト・ポジション要件（任意）',
+                requirementPlaceholder: 'プロジェクト要件、ポジション詳細、その他ご要望をご記入ください...',
+                generate: 'メール内容を生成',
+                generatedEmail: '生成されたメール内容:',
+                copy: 'コピー',
+                copied: 'コピー完了！',
+                copyInstructions: '上のコピー ボタンをクリックし、内容をメールに貼り付けてご連絡いただければ幸いです。',
+                required: '※必須'
+              },
+              footer: {
+                name: 'ジノトゥクマル',
+                title: 'データサイエンティスト・アナリティクスエンジニア',
+                location: '東京、日本',
+                rights: '© 2025 All rights reserved.'
+              }
+            }
+          };
+
+          const t = content[language];
+
+          const technicalSkills = {
+            programmingLanguages: [
+              { name: 'Python', level: 'Advanced' },
+              { name: 'Apache Spark/PySpark', level: 'Advanced' },
+              { name: 'SQL', level: 'Advanced' },
+              { name: 'Java', level: 'Intermediate' },
+              { name: 'Scala', level: 'Advanced with AI' },
+              { name: 'VBA', level: 'Intermediate' },
+              { name: 'Power Query', level: 'Advanced' }
+            ],
+            pythonLibraries: [
+              'Pandas', 'NumPy', 'Scikit-learn', 'TensorFlow', 'Matplotlib', 'Seaborn',
+              'Flask', 'OpenCV', 'Folium', 'Geo pandas', 'Geojson', 'Json',
+              'openpyxl', 'selenium', 'schedule', 'Papermill', 'Pandas profiling',
+              'K-Lib', 'dtale'
+            ],
+            javaLibraries: ['Swing', 'Applet', 'Java J2SE'],
+            databases: [
+              { name: 'SQL Server', tools: 'SSMS' },
+              { name: 'MySQL', tools: 'DBeaver' }
+            ],
+            bigData: ['Apache Spark', 'PySpark', 'Hadoop', 'YARN', 'AWS EMR', 'Databricks'],
+            cloudPlatforms: {
+              azure: [
+                'Azure Synapse Analytics',
+                'Azure Data Factory',
+                'Azure DevOps',
+                'Power BI',
+                'Power Apps',
+                'Power Automate',
+                'Power Query'
+              ],
+              aws: ['AWS S3', 'AWS EC2', 'AWS EMR', 'Databricks', 'Apache Spark on EMR', 'YARN Resource Manager']
+            },
+            biTools: ['Power BI', 'Tableau', 'Tableau Prep'],
+            devTools: [
+              'Jupyter Notebook',
+              'Anaconda',
+              'Miniconda',
+              'IntelliJ',
+              'Visual Studio Code',
+              'Eclipse',
+              'GitHub'
+            ],
+            os: ['Windows', 'Linux (Ubuntu 22.04)'],
+            collaborationTools: ['Slack', 'Backlog', 'Teams', 'Outlook', 'Jira', 'Redmine', 'Box']
+          };
+
+          const projects = [
+            {
+              en: {
+                title: 'Healthcare Analytics & Location-Based Advertising Intelligence - KDDI Corporation',
+                period: '2024.04 - Present (21 months)',
+                client: 'KDDI Corporation, Tokyo (Major Japanese Telecom)',
+                role: 'Data Analyst - Platform Business Division, Data Science Group (DSG)',
+                description: 'Working on data analytics projects within KDDI\'s DSG team. Started with healthcare service analytics, then transitioned to location-based advertising intelligence using big data processing for multiple enterprise clients.',
+                responsibilities: [
+                  '【DOOH Location-Based Targeting System (2025.01 - Present)】',
+                  'References: jeki DOOH Release | KDDI Location Analyzer',
+                  'Built PySpark pipelines on AWS EMR and Databricks processing terabytes of GPS data from au devices for multiple clients: jeki (railway advertising), NewDays (convenience stores), Hitachi Seisakusho (manufacturing)',
+                  'Developed and expanded targeting segmentation algorithms from initial 7 segments (gender, age, office workers, residents, gaming/anime/travel enthusiasts) to 15+ advanced segments',
+                  'Improved location analysis accuracy for KDDI Location Analyzer (KLA) service',
+                  'Built Tableau dashboards and interactive heatmaps visualizing visitor movement, demographics, and behavioral patterns across various business locations',
+                  'Integrated KDDI GPS data with client platforms via WAKONX Data Layer for real-time targeting',
+                  'Processed privacy-compliant statistical aggregation on massive location datasets using Databricks and EMR',
+                  'Delivered precision targeting solutions for 236+ digital signage screens and retail locations',
+                  '',
+                  '【AU Wellness Healthcare Analytics (2024.04 - 2024.12)】',
+                  'Reference: AU Wellness Launch',
+                  'Designed Tableau dashboards for health metrics tracking (steps, weight, calories)',
+                  'Built batch processing workflows for EMR data integration',
+                  'Created analytics for challenge programs, rewards system, and premium features'
+                ]
+              },
+              ja: {
+                title: 'ヘルスケア分析プロジェクト & DOOH（デジタルサイネージ）キャンペーン分析 - KDDI株式会社',
+                period: '2024年4月 - 現在（21ヶ月）',
+                client: 'KDDI株式会社 | 東京都飯田橋',
+                role: 'データアナリスト | プラットフォーム事業本部 データサイエンスグループ（DSG）',
+                description: 'KDDI株式会社のDSGチームでデータ分析プロジェクトに従事。ヘルスケアサービス分析から始まり、複数の企業クライアント向けにビッグデータ処理を活用した位置情報ベースの広告インテリジェンスに移行。',
+                responsibilities: [
+                  '【DOOH（デジタルサイネージ）キャンペーン分析（2025年1月 - 現在）】',
+                  '参考資料: jeki DOOHリリース | KDDI Location Analyzer',
+                  'AWS EMRとDatabricks上でPySparkパイプラインを構築し、auデバイスからのテラバイト規模のGPSデータを処理（クライアント: jeki（鉄道広告）、NewDays（コンビニ）、日立製作所（製造業））',
+                  'ターゲティングセグメンテーションアルゴリズムを初期7セグメント（性別、年齢、会社員、住民、ゲーム/アニメ/旅行愛好家）から15以上の高度なセグメントに拡張',
+                  'KDDI Location Analyzer（KLA）サービスの位置分析精度を向上',
+                  'Tableauダッシュボードとインタラクティブなヒートマップを構築し、様々なビジネス拠点での訪問者移動、人口統計、行動パターンを可視化',
+                  'WAKONX Data Layer経由でKDDI GPSデータをクライアントプラットフォームと統合し、リアルタイムターゲティングを実現',
+                  'DatabricksとEMRを使用して大規模な位置データセットでプライバシー準拠の統計集計を処理',
+                  '236以上のデジタルサイネージ画面と小売店向けに精密ターゲティングソリューションを提供',
+                  '',
+                  '【ヘルスケア分析プロジェクト（AU Wellnessサービス）（2024年4月 - 2024年12月）】',
+                  '参考資料: AU Wellnessローンチ',
+                  '健康指標追跡用のTableauダッシュボードを設計（歩数、体重、カロリー）',
+                  'EMRデータ統合用のバッチ処理ワークフローを構築',
+                  'チャレンジプログラム、報酬システム、プレミアム機能の分析を作成'
+                ]
+              },
+              tech: ['PySpark', 'Apache Spark', 'AWS EMR', 'Databricks', 'Python', 'SQL', 'Spark', 'Tableau', 'Tableau Prep', 'AWS EC2', 'AWS S3', 'YARN', 'KDDI Location Analyzer (KLA)', 'Location Analytics', 'GPS Data Processing', 'Privacy-Compliant Statistical Processing', 'Healthcare Data', 'WAKONX Data Layer', 'Jupyter Notebook', 'Papermill', 'VS Code', 'Miniconda'],
+              teamSize: { en: '6 people', ja: '6人' },
+              duration: { en: '21 months', ja: '21ヶ月' },
+              references: [
+                { title: { en: 'jeki DOOH Release', ja: 'jeki DOOHリリース' }, url: 'https://newsroom.kddi.com/news/detail/kddi_nr-413_3686.html' },
+                { title: { en: 'KDDI Location Analyzer', ja: 'KDDI Location Analyzer' }, url: 'https://www.giken.co.jp/service/kla/' },
+                { title: { en: 'AU Wellness Launch', ja: 'AU Wellnessローンチ' }, url: 'https://www.watch.impress.co.jp/docs/news/1291212.html' }
+              ]
+            },
+            {
+              en: {
+                title: 'AI Wildfire Prediction Research Pipeline',
+                period: '2023.12 - 2024.03 (4 months)',
+                client: 'Major Japanese Electronics Manufacturer IT Company, Tokyo',
+                role: 'ML Engineer',
+                description: 'Developed pipeline using researcher-created AI models for wildfire prediction',
+                responsibilities: [
+                  'Refactored researcher AI development logic',
+                  'Understood machine learning logic and modified existing source code',
+                  'Created pipeline for system implementation (Kedro Pipelines, Apache Airflow)',
+                  'Built Docker images for deployment',
+                  'Collaborated in Japanese and English'
+                ]
+              },
+              ja: {
+                title: '山火事などのAI予測研究パイプライン',
+                period: '2023年12月 - 2024年3月（4ヶ月）',
+                client: '日本大手電機メーカー系IT企業@東京',
+                role: 'MLエンジニア',
+                description: '研究者が作成したAIモデルを使用した山火事予測のパイプライン開発',
+                responsibilities: [
+                  '研究者のAI開発ロジックをリファクタリング',
+                  '機械学習ロジックを理解し、既存のソースコードを修正',
+                  'システム実装用のパイプラインを作成（Kedro Pipelines、Apache Airflow）',
+                  'デプロイ用のDockerイメージを構築',
+                  '日本語と英語で協力'
+                ]
+              },
+              tech: ['Python', 'Flask', 'Pandas', 'NumPy', 'OpenCV', 'TensorFlow', 'Kedro Pipelines', 'Apache Airflow', 'Docker', 'GitHub', 'Notebook Converter', 'Flask API', 'Linux Ubuntu 22.04', 'Windows 10', 'VS Code'],
+              teamSize: { en: '3 people', ja: '3人' },
+              duration: { en: '4 months', ja: '4ヶ月' }
+            },
+            {
+              en: {
+                title: 'BI Dashboard Operations & Automation',
+                period: '2023.07 - 2023.11 (5 months)',
+                client: 'Independent SIer, Tokyo',
+                role: 'Data Analyst',
+                description: 'BI dashboard operations and automation for delivery service provider',
+                responsibilities: [
+                  'Automated operations using Python',
+                  'Created VBA macros for Excel automation',
+                  'Created and managed pipelines: data flows, pipeline testing, trigger configuration',
+                  'Updated database tables (SSMS)',
+                  'Released pipelines and data flows in Azure DevOps, approved pull requests',
+                  'Created and updated Logic Apps triggers',
+                  'Troubleshot Power BI and Tableau dashboard issues',
+                  'Created documentation: reports, test reports, procedure manuals, document reviews',
+                  'Performed daily and monthly operations, phone duty'
+                ]
+              },
+              ja: {
+                title: 'BIダッシュボード運用と運用作自動化',
+                period: '2023年7月 - 2023年11月（5ヶ月）',
+                client: '独立系Sier@東京',
+                role: 'データアナリスト',
+                description: '配送サービスプロバイダー向けのBIダッシュボード運用と自動化',
+                responsibilities: [
+                  'Pythonを使用した運用作自動化',
+                  'Excel自動化用のVBAマクロを作成',
+                  'パイプラインの作成と管理: データフロー、パイプラインテスト、トリガー設定',
+                  'データベーステーブルの更新（SSMS）',
+                  'Azure DevOpsでパイプラインとデータフローをリリース、プルリクエストを承認',
+                  'Logic Appsトリガーの作成と更新',
+                  'Power BIとTableauダッシュボードの問題をトラブルシューティング',
+                  'ドキュメント作成: レポート、テストレポート、手順書、ドキュメントレビュー',
+                  '日次・月次運用作業、電話当番を実施'
+                ]
+              },
+              tech: ['Python', 'SQL', 'VBA', 'Pandas', 'Openpyxl', 'Selenium', 'Schedule', 'Windows 10', 'SQL Server', 'Anaconda', 'Jupyter Notebook', 'Azure Data Factory', 'Azure Database', 'Azure DevOps', 'Azure Blob Storage', 'Logic Apps', 'Power BI', 'Tableau', 'SSMS', 'Slack', 'MS Excel', 'Backlog', 'Teams', 'Outlook'],
+              teamSize: { en: '2+ people', ja: '2人以上' },
+              duration: { en: '5 months', ja: '5ヶ月' }
+            },
+            {
+              en: {
+                title: 'Azure & Power Platform Development Support',
+                period: '2022.06 - 2023.03 (10 months)',
+                client: 'Major Japanese Electronics Manufacturer IT Company, Tokyo',
+                role: 'Data Analyst',
+                description: 'Data analysis solution development using Azure and Power BI mainly for manufacturing companies, Power Platform research and development',
+                responsibilities: [
+                  'Created Power BI dashboards (order/sales data): model creation, DAX measures',
+                  'Created views and managed pipelines in Azure Synapse: data flows, script activities, pipeline testing, scheduling',
+                  'Database development: new table creation, column additions, stored procedure creation',
+                  'Created tables in Azure SQL Database',
+                  'Power Platform research and development: Power Query data processing, Power Apps application creation, SharePoint list creation, Power Automate flow creation',
+                  'Created documentation: reports, table specifications (modifications), test reports'
+                ]
+              },
+              ja: {
+                title: 'AzureおよびPower Platform活用支援',
+                period: '2022年6月 - 2023年3月（10ヶ月）',
+                client: '日本大手電機メーカー系IT企業@東京',
+                role: 'データアナリスト',
+                description: '主に製造業向けのAzureとPower BIを使用したデータ分析ソリューション開発、Power Platformの研究開発',
+                responsibilities: [
+                  'Power BIダッシュボード作成（注文/売上データ）: モデル作成、DAXメジャー',
+                  'Azure Synapseでのビュー作成とパイプライン管理: データフロー、スクリプトアクティビティ、パイプラインテスト、スケジューリング',
+                  'データベース開発: 新規テーブル作成、列追加、ストアドプロシージャ作成',
+                  'Azure SQL Databaseにテーブルを作成',
+                  'Power Platformの研究開発: Power Queryデータ処理、Power Appsアプリケーション作成、SharePointリスト作成、Power Automateフロー作成',
+                  'ドキュメント作成: レポート、テーブル仕様（変更）、テストレポート'
+                ]
+              },
+              tech: ['SQL', 'Power Query', 'Windows 10', 'SQL Server', 'Azure Synapse Analytics', 'Power BI', 'Power Apps', 'Power Automate', 'Power Query', 'SharePoint', 'Azure'],
+              teamSize: { en: '5 people', ja: '5人' },
+              duration: { en: '10 months', ja: '10ヶ月' }
+            },
+            {
+              en: {
+                title: 'MechBook Design Process Development',
+                period: '2018.12 - 2019.03 (3 months)',
+                client: 'University Project',
+                role: 'Project Leader, Programmer, Tester',
+                description: 'Software development for designing mechanical parts (coil springs, worm gears, flat pulleys, etc.)',
+                responsibilities: [
+                  'Designed mechanical component calculation system',
+                  'Implemented Java Swing GUI application',
+                  'Programming and testing'
+                ]
+              },
+              ja: {
+                title: 'MechBook設計プロセス開発',
+                period: '2018年12月 - 2019年3月（3ヶ月）',
+                client: '大学プロジェクト',
+                role: 'プロジェクトリーダー、プログラマー、テスター',
+                description: '機械部品設計用ソフトウェア開発（コイルばね、ウォームギア、平ベルトプーリーなど）',
+                responsibilities: [
+                  '機械部品計算システムを設計',
+                  'Java Swing GUIアプリケーションを実装',
+                  'プログラミングとテスト'
+                ]
+              },
+              tech: ['Java', 'Java J2SE 1.8', 'Swing', 'Applet', 'Windows', 'Eclipse', 'MySQL'],
+              teamSize: { en: '2 people', ja: '2人' },
+              duration: { en: '3 months', ja: '3ヶ月' }
+            },
+            {
+              en: {
+                title: 'Customer Churn Prediction for Telecom Company',
+                period: '2019.05 - 2019.06 (2 months)',
+                client: 'University Project',
+                role: 'Data Scientist',
+                description: 'Built predictive model to identify high-risk churn customers for major telecom company',
+                responsibilities: [
+                  'Analyzed customer-level data from major telecom company',
+                  'Identified high churn-risk customers',
+                  'Identified main indicators of churn',
+                  'Data cleaning, data visualization, predictive model development'
+                ]
+              },
+              ja: {
+                title: '通信会社向け顧客解約予測',
+                period: '2019年5月 - 2019年6月（2ヶ月）',
+                client: '大学プロジェクト',
+                role: 'データサイエンティスト',
+                description: '大手通信会社向けに高リスク解約顧客を特定する予測モデルを構築',
+                responsibilities: [
+                  '大手通信会社の顧客レベルデータを分析',
+                  '高リスク解約顧客を特定',
+                  '解約の主要指標を特定',
+                  'データクリーニング、データ可視化、予測モデル開発'
+                ]
+              },
+              tech: ['Python3', 'Scikit-learn', 'Seaborn', 'NumPy', 'Matplotlib', 'Pandas', 'Windows 10', 'Jupyter Notebook'],
+              teamSize: { en: '2 people', ja: '2人' },
+              duration: { en: '2 months', ja: '2ヶ月' }
+            }
+          ];
+
+          const certifications = [
+            { title: 'AWS Certified Cloud Practitioner', date: 'May 2023', type: 'Professional Certification' },
+            { title: 'Japanese Language Proficiency Test JLPT N2', date: 'December 2024', type: 'Language Certification' },
+            { title: 'Japanese Language Proficiency Test JLPT N3', date: 'December 2020', type: 'Language Certification' },
+            { title: 'Python Programming for Data Science & Machine Learning (ML)', date: 'March 2020', type: 'Course Completion' },
+            { title: 'Advanced Java Programming', date: 'July 2018', type: 'Course Completion' },
+            { title: 'Java Programming - Canada/India Government Joint Project', date: 'May 2018', type: 'Course Completion' }
+          ];
+
+          const onlineCourses = [
+            { title: 'PySpark - Apache Spark Programming in Python for beginners', platform: 'Udemy', duration: '14 hours', date: 'Feb 2025' },
+            { title: 'Microsoft Power BI - Data Modeling & Data Manipulation', platform: 'Udemy', duration: '10.5 hours', date: 'May 2023' },
+            { title: 'Amazon Elastic Compute Cloud (EC2) Beginners Certification', platform: 'Udemy', duration: '3.5 hours', date: 'May 2023' },
+            { title: 'Cloud Computing and Amazon Web Services (AWS) Fundamentals', platform: 'Udemy', duration: '2.5 hours', date: 'May 2023' },
+            { title: 'Data Warehouse Developer-SQL Server/ETL/SSIS/SSAS/SSRS/T-SQL', platform: 'Udemy', duration: '10 hours', date: 'May 2023' },
+            { title: 'Tableau Masterclass: Master Data Visualization with Tableau', platform: 'Udemy', duration: '8 hours', date: 'May 2023' },
+            { title: 'Data Warehouse Concepts: Basic to Advanced concepts', platform: 'Udemy', duration: '7 hours', date: 'Jun 2022' },
+            { title: 'Database design using ER modelling & Normalization technique', platform: 'Udemy', duration: '2 hours', date: 'Jun 2022' },
+            { title: 'Modeling Data Warehouse with Data Vault 2.0', platform: 'Udemy', duration: '6 hours', date: 'Jun 2022' },
+            { title: 'Power Apps - Complete Guide to Microsoft PowerApps', platform: 'Udemy', duration: '8.5 hours', date: 'Jun 2022' }
+          ];
+
+          return (
+            <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950">
+              {/* Header */}
+              <header className="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-lg border-b border-blue-500/20">
+                <div className="max-w-7xl mx-auto px-6 py-4">
+                  <div className="flex justify-between items-center">
+                    <div className="text-2xl font-bold">
+                      <span className="text-white">Data</span>
+                      <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Scientist</span>
+                    </div>
+                    <div className="flex items-center gap-6">
+                      <nav className="flex gap-8">
+                        {t.nav.map((tab, idx) => (
+                          <button
+                            key={tab}
+                            onClick={() => {
+                              setActiveTab(['overview', 'skills', 'projects', 'contact'][idx]);
+                              const sectionId = idx === 0 ? null : ['overview', 'skills', 'projects', 'contact'][idx];
+                              if (sectionId) {
+                                const element = document.getElementById(sectionId);
+                                if (element) {
+                                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }
+                              } else {
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                              }
+                            }}
+                            className={`capitalize font-medium transition-all ${
+                              activeTab === ['overview', 'skills', 'projects', 'contact'][idx]
+                                ? 'text-blue-400 border-b-2 border-blue-400' 
+                                : 'text-gray-400 hover:text-white'
+                            }`}
+                          >
+                            {tab}
+                          </button>
+                        ))}
+                      </nav>
+                      <div className="flex gap-2 ml-4 border-l border-gray-600 pl-4">
+                        <button
+                          onClick={() => setLanguage('en')}
+                          className={`px-3 py-1 rounded font-semibold text-sm transition-all ${
+                            language === 'en'
+                              ? 'bg-blue-600 text-white'
+                              : 'bg-slate-700 text-gray-300 hover:bg-slate-600'
+                          }`}
+                        >
+                          EN
+                        </button>
+                        <button
+                          onClick={() => setLanguage('ja')}
+                          className={`px-3 py-1 rounded font-semibold text-sm transition-all ${
+                            language === 'ja'
+                              ? 'bg-blue-600 text-white'
+                              : 'bg-slate-700 text-gray-300 hover:bg-slate-600'
+                          }`}
+                        >
+                          日本語
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </header>
+
+              {/* Hero Section */}
+              <section className="pt-24 pb-16 px-6">
+                <div className="max-w-7xl mx-auto">
+                  <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                      <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                        {t.hero.title}
+                        <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent">{t.hero.titleGradient}</span>
+                      </h1>
+                      <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                        {t.hero.description}
+                      </p>
+                      <div className="flex items-center gap-6 mb-8 flex-wrap">
+                        <div className="flex items-center gap-2 text-gray-300">
+                          <MapPin size={20} className="text-blue-400" />
+                          <span>{t.hero.location}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-300">
+                          <Languages size={20} className="text-blue-400" />
+                          <span>{t.hero.japanese}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-300">
+                          <Languages size={20} className="text-blue-400" />
+                          <span>{t.hero.english}</span>
+                        </div>
+                      </div>
+                      <div className="flex gap-4">
+                        <button 
+                          onClick={() => {
+                            document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+                            setActiveTab('projects');
+                          }}
+                          className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg shadow-blue-500/30">
+                          {t.hero.viewProjects}
+                        </button>
+                        <button 
+                          onClick={() => {
+                            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                            setActiveTab('contact');
+                          }}
+                          className="border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all">
+                          {t.hero.contactMe}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="relative">
+                      <div className="bg-gradient-to-br from-blue-600/20 to-cyan-600/20 rounded-2xl p-8 border border-blue-500/30 backdrop-blur-sm">
+                        <div className="space-y-4">
+                          {t.hero.highlights.map((highlight, idx) => {
+                            const icons = [
+                              <Cloud className="text-blue-400" size={24} />,
+                              <Database className="text-purple-400" size={24} />,
+                              <Brain className="text-teal-400" size={24} />,
+                              <BarChart3 className="text-cyan-400" size={24} />,
+                              <Code className="text-green-400" size={24} />,
+                              <Layers className="text-orange-400" size={24} />,
+                              <Cloud className="text-indigo-400" size={24} />
+                            ];
+                            return (
+                              <div key={idx} className="flex items-center gap-3 text-white">
+                                {icons[idx % icons.length]}
+                                <span className="text-lg font-semibold">{highlight}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Skills Section */}
+              <section id="skills" className="py-20 px-6 bg-slate-900/50">
+                <div className="max-w-7xl mx-auto">
+                  <h2 className="text-4xl font-bold text-white mb-12 text-center">
+                    {t.skills.title} <span className="text-blue-400">{t.skills.titleHighlight}</span>
+                  </h2>
+                  
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                    {/* Programming Languages */}
+                    <div className="bg-slate-800/50 rounded-xl p-6 border border-blue-500/20 hover:border-blue-500/50 transition-all">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Code className="text-blue-400" size={28} />
+                        <h3 className="text-xl font-bold text-white">{t.skills.programmingLanguages}</h3>
+                      </div>
+                      <div className="space-y-3">
+                        {technicalSkills.programmingLanguages.map((lang, i) => (
+                          <div key={i} className="flex justify-between items-center">
+                            <span className="text-gray-300">{lang.name}</span>
+                            <span className="text-blue-400 text-sm font-semibold">{lang.level}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Databases */}
+                    <div className="bg-slate-800/50 rounded-xl p-6 border border-cyan-500/20 hover:border-cyan-500/50 transition-all">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Database className="text-cyan-400" size={28} />
+                        <h3 className="text-xl font-bold text-white">{t.skills.databases}</h3>
+                      </div>
+                      <div className="space-y-2">
+                        {technicalSkills.databases.map((db, i) => (
+                          <div key={i} className="text-gray-300">
+                            <div className="font-semibold text-white">{db.name}</div>
+                            {db.tools && <div className="text-sm text-gray-400">Tools: {db.tools}</div>}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Big Data */}
+                    <div className="bg-slate-800/50 rounded-xl p-6 border border-orange-500/20 hover:border-orange-500/50 transition-all">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Layers className="text-orange-400" size={28} />
+                        <h3 className="text-xl font-bold text-white">{t.skills.bigData}</h3>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {technicalSkills.bigData.map((tool, i) => (
+                          <span key={i} className="bg-orange-900/30 text-orange-300 px-3 py-1 rounded-full text-sm border border-orange-500/30">
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* BI Tools */}
+                    <div className="bg-slate-800/50 rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/50 transition-all">
+                      <div className="flex items-center gap-3 mb-4">
+                        <BarChart3 className="text-purple-400" size={28} />
+                        <h3 className="text-xl font-bold text-white">{t.skills.biTools}</h3>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {technicalSkills.biTools.map((tool, i) => (
+                          <span key={i} className="bg-purple-900/30 text-purple-300 px-3 py-1 rounded-full text-sm border border-purple-500/30">
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Cloud Platforms */}
+                  <div className="grid md:grid-cols-2 gap-6 mb-12">
+                    <div className="bg-gradient-to-br from-blue-900/30 to-cyan-900/30 rounded-xl p-6 border border-blue-500/30">
+                      <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                        <Cloud className="text-blue-400" size={28} />
+                        {t.skills.microsoftAzure}
+                      </h3>
+                      <div className="grid grid-cols-2 gap-2">
+                        {technicalSkills.cloudPlatforms.azure.map((service, i) => (
+                          <span key={i} className="bg-blue-900/40 text-blue-300 px-3 py-2 rounded-lg text-sm border border-blue-500/30">
+                            {service}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-orange-900/30 to-yellow-900/30 rounded-xl p-6 border border-orange-500/30">
+                      <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                        <Cloud className="text-orange-400" size={28} />
+                        {t.skills.amazonAWS}
+                      </h3>
+                      <div className="flex flex-wrap gap-2">
+                        {technicalSkills.cloudPlatforms.aws.map((service, i) => (
+                          <span key={i} className="bg-orange-900/40 text-orange-300 px-3 py-2 rounded-lg text-sm border border-orange-500/30">
+                            {service}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Python Libraries */}
+                  <div className="bg-slate-800/50 rounded-xl p-6 border border-green-500/20 mb-6">
+                    <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                      <Brain className="text-green-400" size={28} />
+                      {t.skills.pythonLibraries}
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {technicalSkills.pythonLibraries.map((lib, i) => (
+                        <span key={i} className="bg-green-900/30 text-green-300 px-3 py-1 rounded-full text-sm border border-green-500/30">
+                          {lib}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Development Tools */}
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div className="bg-slate-800/50 rounded-xl p-6 border border-blue-500/20">
+                      <h4 className="text-lg font-bold text-white mb-3">{t.skills.devTools}</h4>
+                      <div className="space-y-2">
+                        {technicalSkills.devTools.map((tool, i) => (
+                          <div key={i} className="text-gray-300 text-sm">{tool}</div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="bg-slate-800/50 rounded-xl p-6 border border-cyan-500/20">
+                      <h4 className="text-lg font-bold text-white mb-3">{t.skills.os}</h4>
+                      <div className="space-y-2">
+                        {technicalSkills.os.map((os, i) => (
+                          <div key={i} className="text-gray-300 text-sm">{os}</div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="bg-slate-800/50 rounded-xl p-6 border border-purple-500/20">
+                      <h4 className="text-lg font-bold text-white mb-3">{t.skills.collaboration}</h4>
+                      <div className="space-y-2">
+                        <div className="text-gray-300 text-sm">
+                          <span className="text-blue-400 font-semibold">{t.skills.communication}</span> Slack, Teams, Outlook
+                        </div>
+                        <div className="text-gray-300 text-sm">
+                          <span className="text-cyan-400 font-semibold">{t.skills.projectMgmt}</span> Backlog, Jira, Redmine
+                        </div>
+                        <div className="text-gray-300 text-sm">
+                          <span className="text-green-400 font-semibold">{t.skills.fileSharing}</span> Box
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Projects Section */}
+              <section id="projects" className="py-20 px-6">
+                <div className="max-w-7xl mx-auto">
+                  <h2 className="text-4xl font-bold text-white mb-12 text-center">
+                    {t.projects.title} <span className="text-blue-400">{t.projects.titleHighlight}</span>
+                  </h2>
+                  
+                  {/* Professional Projects */}
+                  <div className="mb-16">
+                    <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                      <Briefcase className="text-cyan-400" size={28} />
+                      {t.projects.professional}
+                    </h3>
+                    <div className="space-y-6">
+                      {projects.slice(0, -2).map((project, idx) => {
+                        const p = project[language];
+                        return (
+                        <div key={idx} className="bg-gradient-to-r from-slate-800/50 to-slate-900/50 rounded-xl p-6 border border-blue-500/20 hover:border-blue-500/50 transition-all">
+                          <div className="flex flex-wrap justify-between items-start gap-4 mb-4">
+                            <div>
+                              <h3 className="text-2xl font-bold text-white mb-2">{p.title}</h3>
+                              <div className="flex flex-wrap gap-4 text-sm">
+                                <span className="text-cyan-400">{p.period}</span>
+                                <span className="text-gray-400">• {p.role}</span>
+                                <span className="text-gray-400">• {t.projects.team} {project.teamSize[language]}</span>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <p className="text-gray-300 mb-4">{p.description}</p>
+                          
+                          <div className="mb-4">
+                            <h4 className="text-white font-semibold mb-2">{t.projects.keyResp}</h4>
+                            <ul className="space-y-1">
+                              {p.responsibilities.map((resp, i) => (
+                                resp && (
+                                <li key={i} className="text-gray-300 text-sm flex items-start gap-2">
+                                  <ChevronRight className="text-blue-400 mt-0.5 flex-shrink-0" size={16} />
+                                  {resp}
+                                </li>
+                                )
+                              ))}
+                            </ul>
+                          </div>
+                          
+                          <div>
+                            <h4 className="text-white font-semibold mb-2 text-sm">{t.projects.techUsed}</h4>
+                            <div className="flex flex-wrap gap-2">
+                              {project.tech.map((tech, i) => (
+                                <span key={i} className="bg-blue-900/30 text-blue-300 px-3 py-1 rounded-full text-xs border border-blue-500/30">
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                          
+                          {project.references && (
+                            <div className="mt-4 pt-4 border-t border-blue-500/20">
+                              <h4 className="text-white font-semibold mb-2 text-sm">{t.projects.references}</h4>
+                              <div className="flex flex-wrap gap-3">
+                                {project.references.map((ref, i) => (
+                                  <a key={i} href={ref.url} target="_blank" rel="noopener noreferrer" 
+                                     className="text-cyan-400 hover:text-cyan-300 text-sm underline flex items-center gap-1">
+                                    {ref.title[language]}
+                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                  </a>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* University Projects */}
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                      <GraduationCap className="text-purple-400" size={28} />
+                      {t.projects.university}
+                    </h3>
+                    <div className="space-y-6">
+                      {projects.slice(-2).map((project, idx) => {
+                        const p = project[language];
+                        return (
+                        <div key={idx} className="bg-gradient-to-r from-slate-800/50 to-slate-900/50 rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/50 transition-all">
+                          <div className="flex flex-wrap justify-between items-start gap-4 mb-4">
+                            <div>
+                              <h3 className="text-2xl font-bold text-white mb-2">{p.title}</h3>
+                              <div className="flex flex-wrap gap-4 text-sm">
+                                <span className="text-purple-400">{p.period}</span>
+                                <span className="text-gray-400">• {p.role}</span>
+                                <span className="text-gray-400">• {t.projects.team} {project.teamSize[language]}</span>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <p className="text-gray-300 mb-4">{p.description}</p>
+                          
+                          <div className="mb-4">
+                            <h4 className="text-white font-semibold mb-2">{t.projects.keyResp}</h4>
+                            <ul className="space-y-1">
+                              {p.responsibilities.map((resp, i) => (
+                                resp && (
+                                <li key={i} className="text-gray-300 text-sm flex items-start gap-2">
+                                  <ChevronRight className="text-purple-400 mt-0.5 flex-shrink-0" size={16} />
+                                  {resp}
+                                </li>
+                                )
+                              ))}
+                            </ul>
+                          </div>
+                          
+                          <div>
+                            <h4 className="text-white font-semibold mb-2 text-sm">{t.projects.techUsed}</h4>
+                            <div className="flex flex-wrap gap-2">
+                              {project.tech.map((tech, i) => (
+                                <span key={i} className="bg-purple-900/30 text-purple-300 px-3 py-1 rounded-full text-xs border border-purple-500/30">
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Certifications & Learning */}
+              <section className="py-20 px-6 bg-slate-900/50">
+                <div className="max-w-7xl mx-auto">
+                  <h2 className="text-4xl font-bold text-white mb-12 text-center">
+                    {t.certifications.title} <span className="text-blue-400">{t.certifications.titleHighlight}</span>
+                  </h2>
+                  
+                  {/* Professional Certifications */}
+                  <div className="mb-12">
+                    <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                      <Award className="text-blue-400" size={28} />
+                      {t.certifications.professional}
+                    </h3>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {certifications.map((cert, idx) => (
+                        <div key={idx} className="bg-slate-800/50 rounded-lg p-5 border border-blue-500/20 hover:border-blue-500/50 transition-all">
+                          <div className="flex justify-between items-start gap-3 mb-2">
+                            <span className="text-gray-300 font-semibold flex-1">{cert.title}</span>
+                            <span className="text-blue-400 text-sm font-medium whitespace-nowrap">{cert.date}</span>
+                          </div>
+                          <span className="inline-block bg-blue-900/30 text-blue-300 px-3 py-1 rounded-full text-xs border border-blue-500/30">
+                            {cert.type}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Online Courses */}
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                      <GraduationCap className="text-cyan-400" size={28} />
+                      {t.certifications.courses}
+                    </h3>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {onlineCourses.map((course, idx) => (
+                        <div key={idx} className="bg-slate-800/50 rounded-lg p-4 border border-cyan-500/20 hover:border-cyan-500/50 transition-all">
+                          <div className="flex justify-between items-start gap-2 mb-2">
+                            <h4 className="text-gray-300 font-medium text-sm flex-1">{course.title}</h4>
+                            <span className="text-cyan-400 text-xs whitespace-nowrap">{course.date}</span>
+                          </div>
+                          <div className="flex gap-3 text-xs">
+                            <span className="text-gray-400">{course.platform}</span>
+                            <span className="text-gray-500">•</span>
+                            <span className="text-gray-400">{course.duration}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Contact Section */}
+              <section id="contact" className="py-20 px-6">
+                <div className="max-w-4xl mx-auto">
+                  <div className="text-center mb-12">
+                    <h2 className="text-4xl font-bold text-white mb-6">{t.contact.title}</h2>
+                    <p className="text-xl text-gray-300 mb-8">
+                      {t.contact.description}
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-4 mb-12">
+                      <a href="mailto:jinoth2112@gmail.com" className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-lg shadow-blue-500/30">
+                        <Mail size={20} />
+                        {t.contact.emailMe}
+                      </a>
+                      <a href="https://www.linkedin.com/in/jinothkumar" className="flex items-center gap-2 border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white px-6 py-3 rounded-lg font-semibold transition-all">
+                        <Linkedin size={20} />
+                        LinkedIn
+                      </a>
+                      <a href="https://github.com/jinoth" className="flex items-center gap-2 border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-white px-6 py-3 rounded-lg font-semibold transition-all">
+                        <Github size={20} />
+                        GitHub
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Email Generator Form */}
+                  <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-xl p-8 border border-blue-500/20">
+                    <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                      <Mail className="text-blue-400" size={28} />
+                      {t.contact.generateEmail}
+                    </h3>
+                    <p className="text-gray-400 mb-6">{t.contact.formDescription}</p>
+                    
+                    <div className="space-y-4 mb-6">
+                      <div>
+                        <label className="block text-white font-semibold mb-2">{t.contact.name} <span className="text-red-400">{t.contact.required}</span></label>
+                        <input
+                          type="text"
+                          value={contactForm.name}
+                          onChange={(e) => handleInputChange('name', e.target.value)}
+                          className="w-full bg-slate-700/50 border border-blue-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                          placeholder={language === 'ja' ? 'お名前' : 'Your full name'}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-white font-semibold mb-2">{t.contact.company} <span className="text-red-400">{t.contact.required}</span></label>
+                        <input
+                          type="text"
+                          value={contactForm.company}
+                          onChange={(e) => handleInputChange('company', e.target.value)}
+                          className="w-full bg-slate-700/50 border border-blue-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                          placeholder={language === 'ja' ? '会社名' : 'Your company name'}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-white font-semibold mb-2">{t.contact.website}</label>
+                        <input
+                          type="url"
+                          value={contactForm.website}
+                          onChange={(e) => handleInputChange('website', e.target.value)}
+                          className="w-full bg-slate-700/50 border border-blue-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                          placeholder="https://www.example.com"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-white font-semibold mb-2">{t.contact.offer}</label>
+                        <select
+                          value={contactForm.offer}
+                          onChange={(e) => handleInputChange('offer', e.target.value)}
+                          className="w-full bg-slate-700/50 border border-blue-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                        >
+                          <option value="">{language === 'ja' ? '提示内容を選択' : 'Select an offer range'}</option>
+                          <option value={language === 'ja' ? '700万円' : '7M yen'}>{language === 'ja' ? '700万円' : '7M yen'}</option>
+                          <option value={language === 'ja' ? '800万円' : '8M yen'}>{language === 'ja' ? '800万円' : '8M yen'}</option>
+                          <option value={language === 'ja' ? '900万円' : '9M yen'}>{language === 'ja' ? '900万円' : '9M yen'}</option>
+                          <option value={language === 'ja' ? '1000万円' : '10M yen'}>{language === 'ja' ? '1000万円' : '10M yen'}</option>
+                          <option value={language === 'ja' ? '1100万円' : '11M yen'}>{language === 'ja' ? '1100万円' : '11M yen'}</option>
+                          <option value={language === 'ja' ? '1200万円' : '12M yen'}>{language === 'ja' ? '1200万円' : '12M yen'}</option>
+                          <option value={language === 'ja' ? '1300万円' : '13M yen'}>{language === 'ja' ? '1300万円' : '13M yen'}</option>
+                          <option value={language === 'ja' ? '1400万円' : '14M yen'}>{language === 'ja' ? '1400万円' : '14M yen'}</option>
+                          <option value={language === 'ja' ? '1500万円' : '15M yen'}>{language === 'ja' ? '1500万円' : '15M yen'}</option>
+                          <option value="Other">{language === 'ja' ? 'その他（要件欄に記載）' : 'Other (Please specify in requirements)'}</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-white font-semibold mb-2">{t.contact.requirement}</label>
+                        <textarea
+                          value={contactForm.requirement}
+                          onChange={(e) => handleInputChange('requirement', e.target.value)}
+                          rows="4"
+                          className="w-full bg-slate-700/50 border border-blue-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 resize-none"
+                          placeholder={t.contact.requirementPlaceholder}
+                        />
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={generateEmail}
+                      className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-[1.02] shadow-lg shadow-blue-500/30 mb-6"
+                    >
+                      {t.contact.generate}
+                    </button>
+
+                    {generatedEmail && (
+                      <div className="mt-6">
+                        <div className="flex items-center justify-between mb-3">
+                          <label className="block text-white font-semibold">{t.contact.generatedEmail}</label>
+                          <button
+                            onClick={copyToClipboard}
+                            className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold transition-all text-sm"
+                          >
+                            {copied ? (
+                              <>
+                                <Check size={18} />
+                                {t.contact.copied}
+                              </>
+                            ) : (
+                              <>
+                                <Copy size={18} />
+                                {t.contact.copy}
+                              </>
+                            )}
+                          </button>
+                        </div>
+                        <textarea
+                          readOnly
+                          value={generatedEmail}
+                          rows="12"
+                          className="w-full bg-slate-900/80 border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 resize-none"
+                        />
+                        <p className="text-gray-400 text-sm mt-2">{t.contact.copyInstructions}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </section>
+
+              {/* Footer */}
+              <footer className="py-8 px-6 border-t border-blue-500/20 bg-slate-900/80">
+                <div className="max-w-7xl mx-auto">
+                  <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div className="text-gray-400 text-center md:text-left">
+                      <p className="font-semibold text-white mb-1">{t.footer.name}</p>
+                      <p className="text-sm">{t.footer.title}</p>
+                    </div>
+                    <div className="text-gray-400 text-sm text-center md:text-right">
+                      <p>{t.footer.location}</p>
+                      <p>{t.footer.rights}</p>
+                    </div>
+                  </div>
+                </div>
+              </footer>
+            </div>
+          );
+        }
+
+        ReactDOM.render(<Portfolio />, document.getElementById('root'));
+    </script>
+</body>
+</html>
