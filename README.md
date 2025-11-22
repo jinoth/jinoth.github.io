@@ -2,9 +2,8 @@
 
 > Personal portfolio website showcasing my data science projects, technical skills, and professional experience.
 
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://YOUR-USERNAME.github.io)
-[![GitHub](https://img.shields.io/badge/github-portfolio-blue)](https://github.com/YOUR-USERNAME)
-[![LinkedIn](https://img.shields.io/badge/linkedin-connect-0077B5)](https://linkedin.com/in/YOUR-PROFILE)
+[![GitHub](https://img.shields.io/badge/github-portfolio-blue)](https://github.com/jinoth)
+[![LinkedIn](https://img.shields.io/badge/linkedin-connect-0077B5)](https://www.linkedin.com/in/jinothkumar)
 
 ---
 
