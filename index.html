@@ -349,26 +349,26 @@
             
             const emailMessages = {
               en: {
-                alert: 'Please fill in at least Name and Company Name',
+                alert: 'Please fill in Name, Company Name, Website Link, and Project/Position Requirements',
                 subject: `Inquiry from ${company} - ${name}`,
                 greeting: 'Dear Jinoth Kumar,',
                 hope: 'I hope this message finds you well.',
                 intro: `My name is ${name}${company ? `, and I represent ${company}` : ''}.`,
                 website: 'Company Website:',
-                offering: 'We are offering:',
                 requirements: 'Project/Position Requirements:',
+                offering: 'We are offering:',
                 closing: 'I would like to discuss potential collaboration opportunities with you.',
                 regards: 'Best regards,'
               },
               ja: {
-                alert: '少なくとも氏名と会社名を入力してください',
+                alert: '氏名、会社名、ウェブサイトリンク、プロジェクト・ポジション要件を入力してください',
                 subject: `${company} - ${name}からのお問い合わせ`,
                 greeting: 'ジノトゥクマル様',
                 hope: 'いつもお世話になっております。',
                 intro: `${name}と申します${company ? `、${company}を代表しております` : ''}。`,
                 website: '会社ウェブサイト:',
-                offering: '提示内容:',
                 requirements: 'プロジェクト・ポジション要件:',
+                offering: '提示内容:',
                 closing: 'ぜひ協力の機会についてお話しさせていただければと思います。',
                 regards: 'よろしくお願いいたします。'
               }
@@ -376,7 +376,7 @@
 
             const msg = emailMessages[language];
             
-            if (!name || !company) {
+            if (!name || !company || !website || !requirement) {
               alert(msg.alert);
               return;
             }
@@ -429,14 +429,14 @@
               emailContent += `${msg.website} ${website}\n`;
             }
             
-            if (offer) {
-              emailContent += `\n${msg.offering} ${offer}\n`;
-            }
-            
             if (requirement) {
               emailContent += `\n${msg.requirements}\n${requirement}\n`;
             }
             
+            if (offer) {
+              emailContent += `\n${msg.offering} ${offer}\n`;
+            }
+                        
             emailContent += `\n${msg.closing}\n\n`;
             emailContent += `${msg.regards}\n${name}`;
             if (company) {
@@ -529,7 +529,7 @@
                 company: 'Company Name',
                 website: 'Website Link',
                 offer: 'Offer/Salary Range',
-                requirement: 'Project/Position Requirements (Optional)',
+                requirement: 'Project/Position Requirements',
                 requirementPlaceholder: 'Describe the project requirements, position details, or any specific needs...',
                 generate: 'Generate Email Content',
                 generatedEmail: 'Generated Email Content:',
@@ -610,7 +610,7 @@
                 company: '会社名',
                 website: 'ウェブサイトリンク',
                 offer: '提示内容・年収レンジ',
-                requirement: 'プロジェクト・ポジション要件（任意）',
+                requirement: 'プロジェクト・ポジション要件',
                 requirementPlaceholder: 'プロジェクト要件、ポジション詳細、その他ご要望をご記入ください...',
                 generate: 'メール内容を生成',
                 generatedEmail: '生成されたメール内容:',
@@ -696,12 +696,14 @@
                   'Integrated KDDI GPS data with client platforms via WAKONX Data Layer for real-time targeting',
                   'Processed privacy-compliant statistical aggregation on massive location datasets using Databricks and EMR',
                   'Delivered precision targeting solutions for 236+ digital signage screens and retail locations',
-                  '',
+                  'Built GPS-based logic for train users and created train line population data for targeted advertisements',
+                  'Developed GPS-based algorithms for bicycle travel, produced traffic datasets, and built visualizations using Python',
                   '【AU Wellness Healthcare Analytics (2024.04 - 2024.12)】',
                   'Reference: AU Wellness Launch',
                   'Designed Tableau dashboards for health metrics tracking (steps, weight, calories)',
                   'Built batch processing workflows for EMR data integration',
-                  'Created analytics for challenge programs, rewards system, and premium features'
+                  'Created analytics for challenge programs, rewards system, and premium features',
+                  'Performed effectiveness testing for push-notification campaigns'
                 ]
               },
               ja: {
@@ -720,16 +722,18 @@
                   'WAKONX Data Layer経由でKDDI GPSデータをクライアントプラットフォームと統合し、リアルタイムターゲティングを実現',
                   'DatabricksとEMRを使用して大規模な位置データセットでプライバシー準拠の統計集計を処理',
                   '236以上のデジタルサイネージ画面と小売店向けに精密ターゲティングソリューションを提供',
-                  '',
+                  'GPSデータを基に鉄道利用者向けロジックを開発し、鉄道路線人口データを作成、ターゲット広告に利用。',
+                  'ユーザーのGPSデータから抽出した自転車利用者を分析し、交通データを生成するロジックを構築と道路ごとの交通量の可視化',
                   '【ヘルスケア分析プロジェクト（AU Wellnessサービス）（2024年4月 - 2024年12月）】',
                   '参考資料: AU Wellnessローンチ',
                   '健康指標追跡用のTableauダッシュボードを設計（歩数、体重、カロリー）',
                   'EMRデータ統合用のバッチ処理ワークフローを構築',
-                  'チャレンジプログラム、報酬システム、プレミアム機能の分析を作成'
+                  'チャレンジプログラム、報酬システム、プレミアム機能の分析を作成',
+                  'プッシュ通知キャンペーンの効果検証を行いました'
                 ]
               },
               tech: ['PySpark', 'Apache Spark', 'AWS EMR', 'Databricks', 'Python', 'SQL', 'Spark', 'Tableau', 'Tableau Prep', 'AWS EC2', 'AWS S3', 'YARN', 'KDDI Location Analyzer (KLA)', 'Location Analytics', 'GPS Data Processing', 'Privacy-Compliant Statistical Processing', 'Healthcare Data', 'WAKONX Data Layer', 'Jupyter Notebook', 'Papermill', 'VS Code', 'Miniconda'],
-              teamSize: { en: '6 people', ja: '6人' },
+              teamSize: { en: '8 people', ja: '8人' },
               duration: { en: '21 months', ja: '21ヶ月' },
               references: [
                 { title: { en: 'jeki DOOH Release', ja: 'jeki DOOHリリース' }, url: 'https://newsroom.kddi.com/news/detail/kddi_nr-413_3686.html' },
@@ -745,10 +749,10 @@
                 role: 'ML Engineer',
                 description: 'Developed pipeline using researcher-created AI models for wildfire prediction',
                 responsibilities: [
-                  'Refactored researcher AI development logic',
-                  'Understood machine learning logic and modified existing source code',
-                  'Created pipeline for system implementation (Kedro Pipelines, Apache Airflow)',
-                  'Built Docker images for deployment',
+                  'Refactored AI research and development logic.',
+                  'Analyzed machine-learning models and modified the existing source code.',
+                  'Built system pipelines using Kedro and Apache Airflow.',
+                  'Created Docker images for production deployment.',
                   'Collaborated in Japanese and English'
                 ]
               },
@@ -766,7 +770,7 @@
                   '日本語と英語で協力'
                 ]
               },
-              tech: ['Python', 'Flask', 'Pandas', 'NumPy', 'OpenCV', 'TensorFlow', 'Kedro Pipelines', 'Apache Airflow', 'Docker', 'GitHub', 'Notebook Converter', 'Flask API', 'Linux Ubuntu 22.04', 'Windows 10', 'VS Code'],
+              tech: ['Python', 'Flask', 'Pandas', 'NumPy', 'OpenCV', 'TensorFlow', 'Kedro Pipelines', 'Apache Airflow', 'Docker', 'GitHub', 'Notebook Converter', 'Flask API', 'Linux Ubuntu 22.04', 'WSL', 'Windows 10', 'VS Code'],
               teamSize: { en: '3 people', ja: '3人' },
               duration: { en: '4 months', ja: '4ヶ月' }
             },
@@ -808,7 +812,7 @@
                 ]
               },
               tech: ['Python', 'SQL', 'VBA', 'Pandas', 'Openpyxl', 'Selenium', 'Schedule', 'Windows 10', 'SQL Server', 'Anaconda', 'Jupyter Notebook', 'Azure Data Factory', 'Azure Database', 'Azure DevOps', 'Azure Blob Storage', 'Logic Apps', 'Power BI', 'Tableau', 'SSMS', 'Slack', 'MS Excel', 'Backlog', 'Teams', 'Outlook'],
-              teamSize: { en: '2+ people', ja: '2人以上' },
+              teamSize: { en: '3+ people', ja: '3人以上' },
               duration: { en: '5 months', ja: '5ヶ月' }
             },
             {
@@ -1464,9 +1468,10 @@
                       </div>
 
                       <div>
-                        <label className="block text-white font-semibold mb-2">{t.contact.website}</label>
+                        <label className="block text-white font-semibold mb-2">{t.contact.website} <span className="text-red-400">{t.contact.required}</span></label>
                         <input
                           type="url"
+                          required
                           value={contactForm.website}
                           onChange={(e) => handleInputChange('website', e.target.value)}
                           className="w-full bg-slate-700/50 border border-blue-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
@@ -1496,8 +1501,9 @@
                       </div>
 
                       <div>
-                        <label className="block text-white font-semibold mb-2">{t.contact.requirement}</label>
+                        <label className="block text-white font-semibold mb-2">{t.contact.requirement} <span className="text-red-400">{t.contact.required}</span></label>
                         <textarea
+                          required
                           value={contactForm.requirement}
                           onChange={(e) => handleInputChange('requirement', e.target.value)}
                           rows="4"
