@@ -529,6 +529,8 @@
                 titleHighlight: 'Projects',
                 professional: 'Professional Experience',
                 university: 'University Projects',
+                dispatchNotice: 'Projects completed under dispatch contract',
+                dispatchCompany: 'Human Resocia',
                 keyResp: 'Key Responsibilities:',
                 techUsed: 'Technologies Used:',
                 references: 'References:',
@@ -610,6 +612,8 @@
                 titleHighlight: 'プロジェクト',
                 professional: '実務経験',
                 university: '大学プロジェクト',
+                dispatchNotice: '人材派遣契約によるプロジェクト',
+                dispatchCompany: 'Human Resocia',
                 keyResp: '主な業務内容:',
                 techUsed: '使用技術:',
                 references: '参考資料:',
@@ -1259,6 +1263,27 @@
                       <Briefcase className="text-cyan-400" size={28} />
                       {t.projects.professional}
                     </h3>
+
+                    {/* DISPATCH CONTRACT BANNER - NEW CODE */}
+                    <div className="mb-6 bg-gradient-to-r from-blue-900/20 to-cyan-900/20 border-l-4 border-blue-400 rounded-r-lg p-4">
+                      <div className="flex items-center gap-3">
+                        <svg className="text-cyan-400 flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                        <div>
+                          <p className="text-cyan-300 font-semibold">
+                            {language === 'ja' ? '人材派遣契約によるプロジェクト' : 'Projects completed under dispatch contract'}
+                          </p>
+                          <p className="text-gray-300 text-sm">
+                            via <span className="font-semibold">Human Resocia</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    {/* END OF DISPATCH CONTRACT BANNER */}
+
                     <div className="space-y-6">
                       {projects.slice(0, -2).map((project, idx) => {
                         const p = project[language];
