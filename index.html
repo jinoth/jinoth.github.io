@@ -350,6 +350,10 @@
             const emailMessages = {
               en: {
                 alert: 'Please fill in Name, Company Name, Website Link, and Project/Position Requirements',
+                nameMissing: 'Name is missing. Please fill in the Name field.',
+                companyMissing: 'Company Name is missing. Please fill in the Company Name field.',
+                websiteMissing: 'Website Link is missing. Please fill in the Website Link field.',
+                requirementMissing: 'Project/Position Requirements is missing. Please fill in the Project/Position Requirements field.',
                 subject: `Inquiry from ${company} - ${name}`,
                 greeting: 'Dear Jinoth Kumar,',
                 hope: 'I hope this message finds you well.',
@@ -362,6 +366,10 @@
               },
               ja: {
                 alert: '氏名、会社名、ウェブサイトリンク、プロジェクト・ポジション要件を入力してください',
+                nameMissing: '氏名が入力されていません。氏名を入力してください。',
+                companyMissing: '会社名が入力されていません。会社名を入力してください。',
+                websiteMissing: 'ウェブサイトリンクが入力されていません。ウェブサイトリンクを入力してください。',
+                requirementMissing: 'プロジェクト・ポジション要件が入力されていません。プロジェクト・ポジション要件を入力してください。',
                 subject: `${company} - ${name}からのお問い合わせ`,
                 greeting: 'ジノトゥクマル様',
                 hope: 'いつもお世話になっております。',
@@ -376,8 +384,21 @@
 
             const msg = emailMessages[language];
             
-            if (!name || !company || !website || !requirement) {
-              alert(msg.alert);
+            // Check each field individually and show specific error message
+            if (!name) {
+              alert(msg.nameMissing);
+              return;
+            }
+            if (!company) {
+              alert(msg.companyMissing);
+              return;
+            }
+            if (!website) {
+              alert(msg.websiteMissing);
+              return;
+            }
+            if (!requirement) {
+              alert(msg.requirementMissing);
               return;
             }
 
@@ -1449,6 +1470,7 @@
                         <label className="block text-white font-semibold mb-2">{t.contact.name} <span className="text-red-400">{t.contact.required}</span></label>
                         <input
                           type="text"
+                          required
                           value={contactForm.name}
                           onChange={(e) => handleInputChange('name', e.target.value)}
                           className="w-full bg-slate-700/50 border border-blue-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
@@ -1460,6 +1482,7 @@
                         <label className="block text-white font-semibold mb-2">{t.contact.company} <span className="text-red-400">{t.contact.required}</span></label>
                         <input
                           type="text"
+                          required
                           value={contactForm.company}
                           onChange={(e) => handleInputChange('company', e.target.value)}
                           className="w-full bg-slate-700/50 border border-blue-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"

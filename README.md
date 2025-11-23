@@ -9,37 +9,61 @@
 
 ## 🚀 About Me
 
-Experienced Data Scientist & Analytics Engineer based in Tokyo, Japan, specializing in:
-- **Azure Cloud Solutions** - Data Factory, Synapse Analytics, Power Platform
-- **Business Intelligence** - Power BI, Tableau, Advanced Analytics
-- **Machine Learning** - Predictive Modeling, Computer Vision, NLP
-- **Data Engineering** - ETL Pipelines, Data Warehousing, Automation
+Data Scientist with 4+ years of professional experience specializing in big data engineering and location analytics. Expert in PySpark, AWS EMR, Databricks, and distributed computing for processing terabytes of GPS data. Currently at **KDDI Corporation** developing segmentation algorithms and targeting logic for location-based intelligence across multiple enterprise clients including retail, transportation, and manufacturing sectors.
 
-Currently working at **KDDI Corporation** as a Data Analyst in the Data Science Group.
+**Key Expertise:**
+- Large-scale Data Engineering with Databricks, AWS EMR, and PySpark
+- Python-based AI/ML Pipeline Development: Data Extraction, Preprocessing, Feature Engineering, and Visualization
+- Pipeline Construction, Data Modeling, and View Creation using Azure Synapse
+- Intuitive Dashboard Development with Power BI and Tableau
+- High-Speed Analysis of Terabyte-Scale GPS Data using Spark Processing
+- Data Warehouse Concepts (ETL/ELT, Star Schema, Scalable Data Design)
+- Rapid Learning and Practical Application of New Cloud Technologies and Tools
+
+**Location:** Tokyo, Japan 🇯🇵  
+**Languages:** Japanese (JLPT N2 - Listening: 100% | Pursuing N1), English (Professional Working Proficiency)
 
 ---
 
 ## 💼 Featured Projects
 
-### 🏥 Healthcare Analytics & DOOH Campaign Analysis - KDDI Corporation
-**Technologies:** Python, PySpark, Tableau, AWS (EC2, S3, EMR)
-- Built analytics infrastructure for healthcare metrics and location-based advertising
-- Developed interactive dashboards and heatmap visualizations
-- Optimized campaign performance through data-driven insights
+### 🏥 Healthcare Analytics & Location-Based Advertising Intelligence - KDDI Corporation
+**Period:** 2024.04 - Present (21 months)  
+**Role:** Data Analyst - Platform Business Division, Data Science Group (DSG)  
+**Technologies:** PySpark, Apache Spark, AWS EMR, Databricks, Python, SQL, Tableau, Tableau Prep, AWS EC2, AWS S3, KDDI Location Analyzer (KLA)
+
+**Key Achievements:**
+- Built PySpark pipelines on AWS EMR and Databricks processing terabytes of GPS data from au devices for multiple clients (jeki, NewDays, Hitachi Seisakusho)
+- Developed and expanded targeting segmentation algorithms from 7 to 15+ advanced segments
+- Built Tableau dashboards and interactive heatmaps visualizing visitor movement, demographics, and behavioral patterns
+- Delivered precision targeting solutions for 236+ digital signage screens and retail locations
+- Processed privacy-compliant statistical aggregation on massive location datasets
+- Designed Tableau dashboards for health metrics tracking (AU Wellness project)
 
 ### 🔥 AI Wildfire Prediction Research Pipeline
-**Technologies:** Python, TensorFlow, Docker, Kedro, Apache Airflow
-- Refactored researcher AI models into production pipeline
-- Implemented automated ML workflows with Kedro and Airflow
-- Deployed containerized solution using Docker
+**Period:** 2023.12 - 2024.03 (4 months)  
+**Role:** ML Engineer  
+**Technologies:** Python, Flask, TensorFlow, Kedro Pipelines, Apache Airflow, Docker, OpenCV, Pandas, NumPy
+
+**Key Achievements:**
+- Refactored AI research and development logic from researcher-created models
+- Analyzed machine-learning models and modified existing source code
+- Built system pipelines using Kedro and Apache Airflow
+- Created Docker images for production deployment
 
 ### 📊 BI Dashboard Operations & Automation
-**Technologies:** Python, Azure (Data Factory, DevOps, Logic Apps), Power BI, Tableau
-- Automated operations saving 20+ hours/week
-- Managed ETL pipelines and data flows in Azure
-- Troubleshot and maintained BI dashboards
+**Period:** 2023.07 - 2023.11 (5 months)  
+**Role:** Data Analyst  
+**Technologies:** Python, SQL, VBA, Azure Data Factory, Azure DevOps, Logic Apps, Power BI, Tableau, SQL Server
 
-[View all 8 projects →](https://YOUR-USERNAME.github.io)
+**Key Achievements:**
+- Automated operations using Python and VBA macros for Excel automation
+- Created and managed pipelines: data flows, pipeline testing, trigger configuration
+- Released pipelines and data flows in Azure DevOps, approved pull requests
+- Troubleshot Power BI and Tableau dashboard issues
+- Created comprehensive documentation: reports, test reports, procedure manuals
+
+[View all projects →](https://jinoth.github.io)
 
 ---
 
@@ -85,16 +109,26 @@ Currently working at **KDDI Corporation** as a Data Analyst in the Data Science 
 ## 📫 Contact
 
 - **Location:** Tokyo, Japan 🇯🇵
-- **Email:** [your.email@example.com](mailto:your.email@example.com)
-- **LinkedIn:** [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
-- **GitHub:** [github.com/yourusername](https://github.com/yourusername)
-- **Languages:** Japanese (JLPT N2), English (Business Level)
+- **Email:** [jinoth2112@gmail.com](mailto:jinoth2112@gmail.com)
+- **LinkedIn:** [linkedin.com/in/jinothkumar](https://www.linkedin.com/in/jinothkumar)
+- **GitHub:** [github.com/jinoth](https://github.com/jinoth)
+- **Languages:** Japanese (JLPT N2 - Listening: 100% | Pursuing N1), English (Professional Working Proficiency)
+
+### Contact Form
+
+The portfolio includes an interactive contact form that generates professional email templates. **Required fields:**
+- Name *
+- Company Name *
+- Website Link *
+- Project/Position Requirements *
+
+Fill in your information to generate a contact email template.
 
 ---
 
 ## 🌐 Website
 
-Visit my portfolio: **[https://YOUR-USERNAME.github.io](https://YOUR-USERNAME.github.io)**
+Visit my portfolio: **[https://jinoth.github.io](https://jinoth.github.io)**
 
 Built with:
 - React 18
@@ -125,3 +159,5 @@ Built with:
 - Azure Cloud Solutions
 - BI Development Projects
 - Machine Learning Implementation
+- Location Analytics & GPS Data Processing
+- Big Data Engineering with PySpark & Databricks
