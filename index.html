@@ -332,7 +332,8 @@
             company: '',
             website: '',
             requirement: '',
-            offer: ''
+            offer: '',
+            positionType: 'permanent' // default to permanent position
           });
           const [generatedEmail, setGeneratedEmail] = useState('');
           const [copied, setCopied] = useState(false);
@@ -345,7 +346,7 @@
           };
 
           const generateEmail = () => {
-            const { name, company, website, requirement, offer } = contactForm;
+            const { name, company, website, requirement, offer, positionType } = contactForm;
             
             const emailMessages = {
               en: {
@@ -354,6 +355,11 @@
                 companyMissing: 'Company Name is missing. Please fill in the Company Name field.',
                 websiteMissing: 'Website Link is missing. Please fill in the Website Link field.',
                 requirementMissing: 'Project/Position Requirements is missing. Please fill in the Project/Position Requirements field.',
+                positionTypeLabel: 'Position Type:',
+                positionTypes: {
+                  permanent: 'Permanent Position',
+                  contract: 'Contract / Dispatch Position'
+                },
                 subject: `Inquiry from ${company} - ${name}`,
                 greeting: 'Dear Jinoth Kumar,',
                 hope: 'I hope this message finds you well.',
@@ -370,6 +376,11 @@
                 companyMissing: '会社名が入力されていません。会社名を入力してください。',
                 websiteMissing: 'ウェブサイトリンクが入力されていません。ウェブサイトリンクを入力してください。',
                 requirementMissing: 'プロジェクト・ポジション要件が入力されていません。プロジェクト・ポジション要件を入力してください。',
+                positionTypeLabel: 'ポジションタイプ:',
+                positionTypes: {
+                  permanent: '正社員ポジション',
+                  contract: '契約・派遣ポジション'
+                },
                 subject: `${company} - ${name}からのお問い合わせ`,
                 greeting: 'ジノトゥクマル様',
                 hope: 'いつもお世話になっております。',
@@ -448,6 +459,10 @@
             
             if (website) {
               emailContent += `${msg.website} ${website}\n`;
+            }
+
+            if (positionType && msg.positionTypeLabel && msg.positionTypes && msg.positionTypes[positionType]) {
+              emailContent += `${msg.positionTypeLabel} ${msg.positionTypes[positionType]}\n`;
             }
             
             if (requirement) {
@@ -552,6 +567,9 @@
                 company: 'Company Name',
                 website: 'Website Link',
                 offer: 'Offer/Salary Range',
+                positionType: 'Position Type',
+                positionPermanent: 'Permanent Position',
+                positionContract: 'Contract / Dispatch',
                 requirement: 'Project/Position Requirements',
                 requirementPlaceholder: 'Describe the project requirements, position details, or any specific needs...',
                 generate: 'Generate Email Content',
@@ -635,6 +653,9 @@
                 company: '会社名',
                 website: 'ウェブサイトリンク',
                 offer: '提示内容・年収レンジ',
+                positionType: 'ポジションタイプ',
+                positionPermanent: '正社員ポジション',
+                positionContract: '契約・派遣ポジション',
                 requirement: 'プロジェクト・ポジション要件',
                 requirementPlaceholder: 'プロジェクト要件、ポジション詳細、その他ご要望をご記入ください...',
                 generate: 'メール内容を生成',
@@ -1546,6 +1567,23 @@
                           <option value={language === 'ja' ? '1500万円' : '15M yen'}>{language === 'ja' ? '1500万円' : '15M yen'}</option>
                           <option value="Other">{language === 'ja' ? 'その他（要件欄に記載）' : 'Other (Please specify in requirements)'}</option>
                         </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-white font-semibold mb-2">{t.contact.positionType}</label>
+                        <div className="flex flex-wrap gap-4 text-gray-200 text-sm">
+                          <label className="flex items-center gap-2 cursor-pointer">
+                            <input
+                              type="radio"
+                              name="positionType"
+                              value="permanent"
+                              checked={contactForm.positionType === 'permanent'}
+                              onChange={(e) => handleInputChange('positionType', e.target.value)}
+                              className="text-blue-500 focus:ring-blue-500"
+                            />
+                            <span>{t.contact.positionPermanent}</span>
+                          </label>
+                        </div>
                       </div>
 
                       <div>
