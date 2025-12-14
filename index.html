@@ -1665,27 +1665,6 @@
                       </div>
 
                       <div>
-                        <label className="block text-white font-semibold mb-2">{t.contact.offer}</label>
-                        <select
-                          value={contactForm.offer}
-                          onChange={(e) => handleInputChange('offer', e.target.value)}
-                          className="w-full bg-slate-700/50 border border-blue-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
-                        >
-                          <option value="">{language === 'ja' ? '提示内容を選択' : 'Select an offer range'}</option>
-                          <option value={language === 'ja' ? '700万円' : '7M yen'}>{language === 'ja' ? '700万円' : '7M yen'}</option>
-                          <option value={language === 'ja' ? '800万円' : '8M yen'}>{language === 'ja' ? '800万円' : '8M yen'}</option>
-                          <option value={language === 'ja' ? '900万円' : '9M yen'}>{language === 'ja' ? '900万円' : '9M yen'}</option>
-                          <option value={language === 'ja' ? '1000万円' : '10M yen'}>{language === 'ja' ? '1000万円' : '10M yen'}</option>
-                          <option value={language === 'ja' ? '1100万円' : '11M yen'}>{language === 'ja' ? '1100万円' : '11M yen'}</option>
-                          <option value={language === 'ja' ? '1200万円' : '12M yen'}>{language === 'ja' ? '1200万円' : '12M yen'}</option>
-                          <option value={language === 'ja' ? '1300万円' : '13M yen'}>{language === 'ja' ? '1300万円' : '13M yen'}</option>
-                          <option value={language === 'ja' ? '1400万円' : '14M yen'}>{language === 'ja' ? '1400万円' : '14M yen'}</option>
-                          <option value={language === 'ja' ? '1500万円' : '15M yen'}>{language === 'ja' ? '1500万円' : '15M yen'}</option>
-                          <option value="Other">{language === 'ja' ? 'その他（要件欄に記載）' : 'Other (Please specify in requirements)'}</option>
-                        </select>
-                      </div>
-
-                      <div>
                         <label className="block text-white font-semibold mb-2">{t.contact.positionType}</label>
                         <div className="flex flex-wrap gap-4 text-gray-200 text-sm">
                           <label className="flex items-center gap-2 cursor-pointer">
