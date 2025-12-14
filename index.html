@@ -394,7 +394,7 @@
           });
           const [generatedEmail, setGeneratedEmail] = useState('');
           const [copied, setCopied] = useState(false);
-          const [formErrors, setFormErrors] = useState([]);
+          const [fieldErrors, setFieldErrors] = useState({});
           const [copyError, setCopyError] = useState('');
 
           const handleInputChange = (field, value) => {
@@ -402,13 +402,16 @@
               ...prev,
               [field]: value
             }));
-            setFormErrors([]);
+            setFieldErrors(prev => ({
+              ...prev,
+              [field]: ''
+            }));
             setCopyError('');
           };
 
           const switchLanguage = (lang) => {
             setLanguage(lang);
-            setFormErrors([]);
+            setFieldErrors({});
             setCopyError('');
             setCopied(false);
           };
@@ -462,28 +465,28 @@
             };
 
             const msg = emailMessages[language];
-            const errors = [];
+            const errors = {};
             
             if (!name) {
-              errors.push(msg.nameMissing);
+              errors.name = msg.nameMissing;
             }
             if (!company) {
-              errors.push(msg.companyMissing);
+              errors.company = msg.companyMissing;
             }
             if (!website) {
-              errors.push(msg.websiteMissing);
+              errors.website = msg.websiteMissing;
             }
             if (!requirement) {
-              errors.push(msg.requirementMissing);
+              errors.requirement = msg.requirementMissing;
             }
 
-            if (errors.length > 0) {
-              setFormErrors(errors);
+            if (Object.keys(errors).length > 0) {
+              setFieldErrors(errors);
               setGeneratedEmail('');
               return;
             }
 
-            setFormErrors([]);
+            setFieldErrors({});
 
             const now = new Date();
             const timestamp = now.getTime();
@@ -1096,8 +1099,9 @@
                             className={`capitalize font-medium transition-all ${
                               activeTab === ['overview', 'skills', 'projects', 'contact'][idx]
                                 ? 'text-blue-400 border-b-2 border-blue-400' 
-                                : 'text-gray-400 hover:text-white'
+                              : 'text-gray-400 hover:text-white'
                             }`}
+                            aria-current={activeTab === ['overview', 'skills', 'projects', 'contact'][idx] ? 'page' : undefined}
                           >
                             {tab}
                           </button>
@@ -1601,16 +1605,6 @@
                       {t.contact.generateEmail}
                     </h3>
                     <p className="text-gray-400 mb-6">{t.contact.formDescription}</p>
-                    {formErrors.length > 0 && (
-                      <div className="mb-6 rounded-lg border border-red-500/40 bg-red-900/30 p-4 text-red-100" role="alert" aria-live="assertive">
-                        <p className="font-semibold mb-2">{language === 'ja' ? '入力エラーがあります。以下をご確認ください。' : 'Please review and fix the following:'}</p>
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          {formErrors.map((error, index) => (
-                            <li key={index}>{error}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
                     
                     <div className="space-y-4 mb-6">
                       <div>
@@ -1620,9 +1614,16 @@
                           required
                           value={contactForm.name}
                           onChange={(e) => handleInputChange('name', e.target.value)}
-                          className="w-full bg-slate-700/50 border border-blue-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                          aria-invalid={Boolean(fieldErrors.name)}
+                          aria-describedby={fieldErrors.name ? 'name-error' : undefined}
+                          className={`w-full bg-slate-700/50 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${fieldErrors.name ? 'border-red-500/60 focus:border-red-500' : 'border-blue-500/30 focus:border-blue-500'}`}
                           placeholder={language === 'ja' ? 'お名前' : 'Your full name'}
                         />
+                        {fieldErrors.name && (
+                          <p id="name-error" className="mt-2 text-sm text-red-300" role="alert">
+                            {fieldErrors.name}
+                          </p>
+                        )}
                       </div>
 
                       <div>
@@ -1632,9 +1633,16 @@
                           required
                           value={contactForm.company}
                           onChange={(e) => handleInputChange('company', e.target.value)}
-                          className="w-full bg-slate-700/50 border border-blue-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                          aria-invalid={Boolean(fieldErrors.company)}
+                          aria-describedby={fieldErrors.company ? 'company-error' : undefined}
+                          className={`w-full bg-slate-700/50 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${fieldErrors.company ? 'border-red-500/60 focus:border-red-500' : 'border-blue-500/30 focus:border-blue-500'}`}
                           placeholder={language === 'ja' ? '会社名' : 'Your company name'}
                         />
+                        {fieldErrors.company && (
+                          <p id="company-error" className="mt-2 text-sm text-red-300" role="alert">
+                            {fieldErrors.company}
+                          </p>
+                        )}
                       </div>
 
                       <div>
@@ -1644,9 +1652,16 @@
                           required
                           value={contactForm.website}
                           onChange={(e) => handleInputChange('website', e.target.value)}
-                          className="w-full bg-slate-700/50 border border-blue-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                          aria-invalid={Boolean(fieldErrors.website)}
+                          aria-describedby={fieldErrors.website ? 'website-error' : undefined}
+                          className={`w-full bg-slate-700/50 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${fieldErrors.website ? 'border-red-500/60 focus:border-red-500' : 'border-blue-500/30 focus:border-blue-500'}`}
                           placeholder="https://www.example.com"
                         />
+                        {fieldErrors.website && (
+                          <p id="website-error" className="mt-2 text-sm text-red-300" role="alert">
+                            {fieldErrors.website}
+                          </p>
+                        )}
                       </div>
 
                       <div>
@@ -1694,9 +1709,16 @@
                           value={contactForm.requirement}
                           onChange={(e) => handleInputChange('requirement', e.target.value)}
                           rows="4"
-                          className="w-full bg-slate-700/50 border border-blue-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 resize-none"
+                          aria-invalid={Boolean(fieldErrors.requirement)}
+                          aria-describedby={fieldErrors.requirement ? 'requirement-error' : undefined}
+                          className={`w-full bg-slate-700/50 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 resize-none ${fieldErrors.requirement ? 'border-red-500/60 focus:border-red-500' : 'border-blue-500/30 focus:border-blue-500'}`}
                           placeholder={t.contact.requirementPlaceholder}
                         />
+                        {fieldErrors.requirement && (
+                          <p id="requirement-error" className="mt-2 text-sm text-red-300" role="alert">
+                            {fieldErrors.requirement}
+                          </p>
+                        )}
                       </div>
                     </div>
 
