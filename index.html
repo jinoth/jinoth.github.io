@@ -1188,19 +1188,22 @@
                       <div className="bg-gradient-to-br from-blue-600/20 to-cyan-600/20 rounded-2xl p-8 border border-blue-500/30 backdrop-blur-sm">
                         <div className="space-y-4">
                           {t.hero.highlights.map((highlight, idx) => {
-                            const icons = [
-                              <Cloud className="text-blue-400" size={24} />,
-                              <Database className="text-purple-400" size={24} />,
-                              <Brain className="text-teal-400" size={24} />,
-                              <BarChart3 className="text-cyan-400" size={24} />,
-                              <Code className="text-green-400" size={24} />,
-                              <Layers className="text-orange-400" size={24} />,
-                              <Cloud className="text-indigo-400" size={24} />
+                            const iconOptions = [
+                              { Component: Cloud, color: 'text-blue-300 bg-blue-500/20' },
+                              { Component: Database, color: 'text-purple-300 bg-purple-500/20' },
+                              { Component: Brain, color: 'text-teal-200 bg-teal-500/20' },
+                              { Component: BarChart3, color: 'text-cyan-300 bg-cyan-500/20' },
+                              { Component: Code, color: 'text-green-300 bg-green-500/20' },
+                              { Component: Layers, color: 'text-orange-300 bg-orange-500/20' },
+                              { Component: Cloud, color: 'text-indigo-300 bg-indigo-500/20' }
                             ];
+                            const { Component, color } = iconOptions[idx % iconOptions.length];
                             return (
-                              <div key={idx} className="flex items-center gap-3 text-white">
-                                {icons[idx % icons.length]}
-                                <span className="text-lg font-semibold">{highlight}</span>
+                              <div key={idx} className="flex items-center gap-4 text-white">
+                                <span className="flex h-10 w-10 items-center justify-center">
+                                  <Component size={28} />
+                                </span>
+                                <span className="text-lg font-semibold leading-snug">{highlight}</span>
                               </div>
                             );
                           })}
