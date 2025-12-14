@@ -611,6 +611,24 @@
                   'Tableau dashboards and heatmaps delivering leadership-ready movement & demographic insights.'
                 ]
               },
+              aboutSection: {
+                title: 'About / Working Style',
+                aboutText: 'Analytics Engineer / Data Engineer focused on mobility and location intelligence. I build reliable data pipelines and turn data into leadership-ready insights. I care about impact, clarity, and scalable systems.',
+                workingStyleTitle: 'Working style',
+                workingStyleBullets: ['Systems thinking', 'Long-term planning', 'Impact-first execution'],
+                mbti: {
+                  label: 'MBTI',
+                  type: 'INTJ',
+                  nickname: 'Architect',
+                  blurb: 'Systems-first, strategic thinker, calm under ambiguity.',
+                  disclaimer: 'For self-reflection.',
+                  title: 'MBTI Personality Type',
+                  links: [
+                    { text: 'What is MBTI?', url: 'https://www.myersbriggs.org/my-mbti-personality-type/myers-briggs-overview/' },
+                    { text: 'INTJ reference', url: 'https://www.16personalities.com/intj-personality' }
+                  ]
+                }
+              },
               skills: {
                 title: 'Technical',
                 titleHighlight: 'Expertise',
@@ -633,8 +651,8 @@
                 titleHighlight: 'Projects',
                 professional: 'Professional Experience',
                 university: 'University Projects',
-                dispatchNotice: 'Projects completed under dispatch contract',
-                dispatchCompany: 'Human Resocia',
+                staffingNotice: 'Projects completed via staffing contract',
+                staffingCompany: 'Human Resocia',
                 keyResp: 'Key Responsibilities:',
                 techUsed: 'Technologies Used:',
                 references: 'References:',
@@ -697,6 +715,24 @@
                   'Tableauヒートマップで移動・属性を可視化し、経営報告を高速化'
                 ]
               },
+              aboutSection: {
+                title: '自己紹介 / 働き方',
+                aboutText: '位置情報・モビリティ領域を中心に、データ基盤開発と意思決定支援を行うデータエンジニアです。大規模データを扱うパイプライン構築と、経営・事業に活きる示唆の提供に強みがあります。成果と再現性を重視します。',
+                workingStyleTitle: '働き方',
+                workingStyleBullets: ['仕組み化', '長期視点', '成果重視'],
+                mbti: {
+                  label: 'MBTI',
+                  type: 'INTJ',
+                  nickname: '建築家',
+                  blurb: '仕組み化、戦略思考、曖昧さへの対応力。',
+                  disclaimer: '自己理解の参考として。',
+                  title: 'MBTIタイプ',
+                  links: [
+                    { text: 'MBTIとは？', url: 'https://www.mbti.or.jp/discussion/01' },
+                    { text: 'INTJ参考', url: 'https://www.16personalities.com/ja/intj%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC' }
+                  ]
+                }
+              },
               skills: {
                 title: '技術',
                 titleHighlight: 'スキル',
@@ -719,8 +755,8 @@
                 titleHighlight: 'プロジェクト',
                 professional: '実務経験',
                 university: '大学プロジェクト',
-                dispatchNotice: '人材派遣契約によるプロジェクト',
-                dispatchCompany: 'Human Resocia',
+                staffingNotice: '人材契約によるプロジェクト',
+                staffingCompany: 'Human Resocia',
                 keyResp: '主な業務内容:',
                 techUsed: '使用技術:',
                 references: '参考資料:',
@@ -1404,7 +1440,7 @@
                         </svg>
                         <div>
                           <p className="text-cyan-300 font-semibold">
-                            {language === 'ja' ? '人材派遣契約によるプロジェクト' : 'Projects completed under dispatch contract'}
+                            {language === 'ja' ? '人材契約によるプロジェクト' : 'Projects completed via staffing contract'}
                           </p>
                           <p className="text-gray-300 text-sm">
                             via <span className="font-semibold">Human Resocia</span>
@@ -1534,6 +1570,70 @@
                   </div>
                 </div>
               </section>
+
+              {/* About / Working Style */}
+              {t.aboutSection && (
+                <section className="py-20 px-6 bg-slate-900/40">
+                  <div className="max-w-7xl mx-auto">
+                    <h2 className="text-4xl font-bold text-white mb-10 text-center">
+                      {t.aboutSection.title}
+                    </h2>
+                    <div className="grid lg:grid-cols-2 gap-6">
+                      <div className="bg-slate-800/60 rounded-2xl border border-blue-500/20 p-6 space-y-4">
+                        <p className="text-gray-300 leading-relaxed">
+                          {t.aboutSection.aboutText}
+                        </p>
+                        <div>
+                          <h3 className="text-lg font-semibold text-white mb-3">
+                            {t.aboutSection.workingStyleTitle}
+                          </h3>
+                          <div className="flex flex-wrap gap-2">
+                            {t.aboutSection.workingStyleBullets.map((item, idx) => (
+                              <span
+                                key={idx}
+                                className="bg-slate-900/60 border border-blue-500/30 px-3 py-1 rounded-full text-sm text-blue-100"
+                              >
+                                {item}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="bg-slate-800/60 rounded-2xl border border-blue-500/20 p-6 space-y-4">
+                        <h3 className="text-lg font-semibold text-white">
+                          {t.aboutSection.mbti.title || (language === 'ja' ? 'MBTIタイプ' : 'MBTI Personality Type')}
+                        </h3>
+                        <div className="flex flex-wrap items-center gap-3 text-sm text-gray-200">
+                          <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/40 bg-slate-900/70 px-3 py-1 text-white">
+                            <span className="inline-flex h-4 w-4 text-cyan-300">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M7 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7.5a2 2 0 0 0 1.4-.6l3.5-3.5A2 2 0 0 0 20 15.5V5a2 2 0 0 0-2-2H7zm0 2h11v10h-2a2 2 0 0 0-2 2v2H7V5zm7 14v-2a1 1 0 0 1 1-1h2l-3 3z"/>
+                              </svg>
+                            </span>
+                            <span className="font-semibold">{t.aboutSection.mbti.type}</span>
+                            <span className="opacity-70">· {t.aboutSection.mbti.nickname}</span>
+                          </span>
+                          <span className="text-sm opacity-90">{t.aboutSection.mbti.blurb}</span>
+                        </div>
+                        <div className="flex flex-wrap gap-4">
+                          {t.aboutSection.mbti.links?.map((link) => (
+                            <a
+                              key={link.url}
+                              href={link.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-sm text-cyan-300 underline opacity-80 hover:opacity-100"
+                            >
+                              {link.text}
+                            </a>
+                          ))}
+                        </div>
+                        <span className="text-xs text-gray-400">{t.aboutSection.mbti.disclaimer}</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              )}
 
               {/* Certifications & Learning */}
               <section className="py-20 px-6 bg-slate-900/50">
