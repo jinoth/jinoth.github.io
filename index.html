@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lakehouse-focused Analytics Engineer / Data Engineer delivering Databricks + AWS EMR pipelines for mobility, geospatial, and location intelligence programs in Tokyo.">
     <title>Jinoth Kumar - Analytics Engineer Portfolio</title>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -24,6 +25,22 @@
       html {
           scroll-behavior: smooth;
           overflow-x: hidden;
+      }
+      .skip-link {
+          position: absolute;
+          top: -40px;
+          left: 0;
+          background-color: #2563eb;
+          color: #fff;
+          padding: 0.75rem 1rem;
+          border-radius: 0.5rem;
+          z-index: 999;
+          text-decoration: none;
+          font-weight: 600;
+      }
+      .skip-link:focus {
+          top: 1rem;
+          left: 1rem;
       }
       @layer utilities {
           .text-shadow {
@@ -248,6 +265,46 @@
           }
       }
     </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jinoth Kumar",
+        "jobTitle": "Analytics Engineer / Data Engineer",
+        "description": "Lakehouse-focused Analytics Engineer delivering AWS EMR + Databricks (PySpark/Spark SQL) pipelines for terabyte-scale mobility and location data, segmentation logic, and leadership-ready insights.",
+        "url": "https://jinoth.github.io/",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "KDDI Corporation"
+        },
+        "knowsAbout": [
+          "Mobility analytics",
+          "Geospatial intelligence",
+          "Location intelligence",
+          "Lakehouse architecture",
+          "Databricks",
+          "AWS EMR",
+          "PySpark",
+          "Spark SQL",
+          "Kedro",
+          "Apache Airflow",
+          "Tableau dashboards"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Tokyo",
+          "addressCountry": "JP"
+        },
+        "knowsLanguage": [
+          "English",
+          "Japanese (JLPT N2, preparing for N1)"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/jinothkumar",
+          "https://github.com/jinoth"
+        ]
+      }
+    </script>
 </head>
 <body>
     <div id="root"></div>
@@ -337,12 +394,23 @@
           });
           const [generatedEmail, setGeneratedEmail] = useState('');
           const [copied, setCopied] = useState(false);
+          const [formErrors, setFormErrors] = useState([]);
+          const [copyError, setCopyError] = useState('');
 
           const handleInputChange = (field, value) => {
             setContactForm(prev => ({
               ...prev,
               [field]: value
             }));
+            setFormErrors([]);
+            setCopyError('');
+          };
+
+          const switchLanguage = (lang) => {
+            setLanguage(lang);
+            setFormErrors([]);
+            setCopyError('');
+            setCopied(false);
           };
 
           const generateEmail = () => {
@@ -394,24 +462,28 @@
             };
 
             const msg = emailMessages[language];
+            const errors = [];
             
-            // Check each field individually and show specific error message
             if (!name) {
-              alert(msg.nameMissing);
-              return;
+              errors.push(msg.nameMissing);
             }
             if (!company) {
-              alert(msg.companyMissing);
-              return;
+              errors.push(msg.companyMissing);
             }
             if (!website) {
-              alert(msg.websiteMissing);
-              return;
+              errors.push(msg.websiteMissing);
             }
             if (!requirement) {
-              alert(msg.requirementMissing);
+              errors.push(msg.requirementMissing);
+            }
+
+            if (errors.length > 0) {
+              setFormErrors(errors);
+              setGeneratedEmail('');
               return;
             }
+
+            setFormErrors([]);
 
             const now = new Date();
             const timestamp = now.getTime();
@@ -485,11 +557,14 @@
 
           const copyToClipboard = () => {
             if (generatedEmail) {
+              setCopyError('');
               navigator.clipboard.writeText(generatedEmail).then(() => {
                 setCopied(true);
+                setCopyError('');
                 setTimeout(() => setCopied(false), 2000);
-              }).catch(err => {
-                alert('Failed to copy text. Please select and copy manually.');
+              }).catch(() => {
+                setCopied(false);
+                setCopyError(language === 'ja' ? 'テキストのコピーに失敗しました。手動でコピーしてください。' : 'Failed to copy text. Please select and copy manually.');
               });
             }
           };
@@ -982,16 +1057,27 @@
 
           return (
             <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950">
+              <a
+                href="#main-content"
+                className="skip-link"
+              >
+                {language === 'ja' ? 'メインコンテンツへスキップ' : 'Skip to main content'}
+              </a>
               {/* Header */}
               <header className="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-lg border-b border-blue-500/20">
                 <div className="max-w-7xl mx-auto px-6 py-4">
                   <div className="flex justify-between items-center">
-                    <div className="text-2xl font-bold">
+                    <div
+                      className="text-2xl font-bold"
+                      role="img"
+                      aria-label={language === 'ja' ? 'ジノトゥクマル アナリティクスエンジニア' : 'Jinoth Kumar Analytics Engineer'}
+                    >
+                      <span className="sr-only">Jinoth Kumar </span>
                       <span className="text-white">Analytics </span>
                       <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Engineer</span>
                     </div>
                     <div className="flex items-center gap-6">
-                      <nav className="flex gap-8">
+                      <nav className="flex gap-8" aria-label={language === 'ja' ? '主要ナビゲーション' : 'Primary navigation'}>
                         {t.nav.map((tab, idx) => (
                           <button
                             key={tab}
@@ -1019,22 +1105,26 @@
                       </nav>
                       <div className="flex gap-2 ml-4 border-l border-gray-600 pl-4">
                         <button
-                          onClick={() => setLanguage('en')}
+                          onClick={() => switchLanguage('en')}
                           className={`px-3 py-1 rounded font-semibold text-sm transition-all ${
                             language === 'en'
                               ? 'bg-blue-600 text-white'
                               : 'bg-slate-700 text-gray-300 hover:bg-slate-600'
                           }`}
+                          aria-pressed={language === 'en'}
+                          aria-label={language === 'en' ? 'English language selected' : '英語表示に切り替え'}
                         >
                           EN
                         </button>
                         <button
-                          onClick={() => setLanguage('ja')}
+                          onClick={() => switchLanguage('ja')}
                           className={`px-3 py-1 rounded font-semibold text-sm transition-all ${
                             language === 'ja'
                               ? 'bg-blue-600 text-white'
                               : 'bg-slate-700 text-gray-300 hover:bg-slate-600'
                           }`}
+                          aria-pressed={language === 'ja'}
+                          aria-label={language === 'ja' ? '日本語表示: 選択中' : 'Switch to Japanese'}
                         >
                           日本語
                         </button>
@@ -1043,6 +1133,7 @@
                   </div>
                 </div>
               </header>
+              <main id="main-content" role="main">
 
               {/* Hero Section */}
               <section className="pt-24 pb-16 px-6">
@@ -1510,6 +1601,16 @@
                       {t.contact.generateEmail}
                     </h3>
                     <p className="text-gray-400 mb-6">{t.contact.formDescription}</p>
+                    {formErrors.length > 0 && (
+                      <div className="mb-6 rounded-lg border border-red-500/40 bg-red-900/30 p-4 text-red-100" role="alert" aria-live="assertive">
+                        <p className="font-semibold mb-2">{language === 'ja' ? '入力エラーがあります。以下をご確認ください。' : 'Please review and fix the following:'}</p>
+                        <ul className="list-disc list-inside space-y-1 text-sm">
+                          {formErrors.map((error, index) => (
+                            <li key={index}>{error}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                     
                     <div className="space-y-4 mb-6">
                       <div>
@@ -1607,7 +1708,7 @@
                     </button>
 
                     {generatedEmail && (
-                      <div className="mt-6">
+                      <div className="mt-6" aria-live="polite">
                         <div className="flex items-center justify-between mb-3">
                           <label className="block text-white font-semibold">{t.contact.generatedEmail}</label>
                           <button
@@ -1627,6 +1728,9 @@
                             )}
                           </button>
                         </div>
+                        <span className="sr-only" aria-live="polite">
+                          {copied ? (language === 'ja' ? 'メール内容をコピーしました。' : 'Email content copied.') : ''}
+                        </span>
                         <textarea
                           readOnly
                           value={generatedEmail}
@@ -1634,12 +1738,18 @@
                           className="w-full bg-slate-900/80 border border-cyan-500/30 rounded-lg px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 resize-none"
                         />
                         <p className="text-gray-400 text-sm mt-2">{t.contact.copyInstructions}</p>
+                        {copyError && (
+                          <p className="text-red-300 text-sm mt-2" role="alert" aria-live="assertive">
+                            {copyError}
+                          </p>
+                        )}
                       </div>
                     )}
                   </div>
                 </div>
               </section>
 
+              </main>
               {/* Footer */}
               <footer className="py-8 px-6 border-t border-blue-500/20 bg-slate-900/80">
                 <div className="max-w-7xl mx-auto">
